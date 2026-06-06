@@ -1315,11 +1315,7 @@
     <p class="footer-copy">© 2024 Double Barrel PH · Premium Smoked Meats</p>
   </footer>
 
-  <!-- ── GOOGLE MAPS PLACES API ──────────────────────────────────────────
-       Replace YOUR_GOOGLE_MAPS_API_KEY below with your actual API key.
-       Get one at: https://console.cloud.google.com → Maps → Places API
-  ──────────────────────────────────────────────────────────────────── -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&libraries=places&callback=initAutocomplete" async defer></script>
+ 
 
   <script>
     // ── Fade-in on scroll ──────────────────────────────────────────────
@@ -1330,22 +1326,7 @@
     }, { threshold: 0.12 });
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-    // ── Google Maps Autocomplete ───────────────────────────────────────
-    function initAutocomplete() {
-      const input = document.getElementById('f-address');
-      const autocomplete = new google.maps.places.Autocomplete(input, {
-        componentRestrictions: { country: 'ph' }, // restrict to Philippines
-        fields: ['formatted_address'],
-        types: ['address']
-      });
-      autocomplete.addListener('place_changed', () => {
-        const place = autocomplete.getPlace();
-        if (place.formatted_address) {
-          input.value = place.formatted_address;
-        }
-      });
-    }
-
+ 
     // ── Product quantities & pricing ──────────────────────────────────
     const PRICES = { beef: 1200, ribs: 950 };
     const qty    = { beef: 0, ribs: 0 };
