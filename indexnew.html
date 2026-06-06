@@ -1,0 +1,1438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Double Barrel PH — Premium Smoked Meats</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --black: #0d0d0d;
+      --charcoal: #1a1a1a;
+      --smoke: #2b2b2b;
+      --brown: #6b3f1e;
+      --brown-light: #8b5530;
+      --amber: #c8722a;
+      --cream: #f5ede2;
+      --white: #ffffff;
+      --gray: #888888;
+      --gray-light: #cccccc;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--black);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 5vw;
+      background: rgba(13,13,13,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(200,114,42,0.15);
+    }
+
+    .nav-logo {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .nav-logo span { color: var(--amber); }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.78rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gray-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--amber); }
+
+    .nav-cta {
+      background: var(--amber);
+      color: var(--black) !important;
+      padding: 0.55rem 1.4rem;
+      font-weight: 600 !important;
+      border-radius: 2px;
+      transition: background 0.2s !important;
+    }
+
+    .nav-cta:hover { background: var(--brown-light) !important; color: var(--white) !important; }
+
+    /* ─── HERO ─── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      padding: 8rem 5vw 4rem;
+      background:
+        linear-gradient(to bottom, rgba(13,13,13,0.55) 0%, rgba(13,13,13,0.8) 60%, rgba(13,13,13,1) 100%),
+        url('https://images.unsplash.com/photo-1738574138342-ed19c1c1056f?w=1800&q=85') center/cover no-repeat;
+    }
+
+    .hero-smoke {
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='800'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='800' height='800' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--amber);
+      border: 1px solid var(--amber);
+      padding: 0.35rem 1.2rem;
+      margin-bottom: 2rem;
+      border-radius: 2px;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3.5rem, 9vw, 8rem);
+      font-weight: 900;
+      line-height: 0.92;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--amber);
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: var(--gray-light);
+      font-weight: 300;
+      max-width: 520px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--amber);
+      color: var(--black);
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.9rem 2.5rem;
+      border: none;
+      cursor: pointer;
+      border-radius: 2px;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .btn-primary:hover { background: var(--brown-light); color: var(--white); transform: translateY(-2px); }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--white);
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.9rem 2.5rem;
+      border: 1px solid rgba(255,255,255,0.3);
+      cursor: pointer;
+      border-radius: 2px;
+      text-decoration: none;
+      display: inline-block;
+      transition: border-color 0.2s, color 0.2s, transform 0.15s;
+    }
+
+    .btn-ghost:hover { border-color: var(--amber); color: var(--amber); transform: translateY(-2px); }
+
+    .hero-scroll {
+      margin-top: 4rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gray);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      justify-content: center;
+    }
+
+    .hero-scroll::after {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 1px;
+      background: var(--gray);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse { 0%,100%{opacity:0.3} 50%{opacity:1} }
+
+    /* ─── SECTION COMMON ─── */
+    section { padding: 6rem 5vw; }
+
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      font-weight: 900;
+      line-height: 1.05;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-title em { font-style: italic; color: var(--amber); }
+
+    .divider {
+      width: 60px;
+      height: 3px;
+      background: var(--amber);
+      margin-bottom: 2rem;
+    }
+
+    /* ─── STORY ─── */
+    #story {
+      background: var(--charcoal);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .story-visual {
+      position: relative;
+      height: 500px;
+    }
+
+    .story-card {
+      position: absolute;
+      border-radius: 4px;
+      overflow: hidden;
+      background: var(--smoke);
+    }
+
+    .story-card-main {
+      top: 0; left: 0;
+      width: 75%;
+      height: 380px;
+      background: url('https://images.unsplash.com/photo-1544025162-d76694265947?w=900&q=80') center/cover no-repeat;
+    }
+
+    .story-card-accent {
+      bottom: 0; right: 0;
+      width: 50%;
+      height: 220px;
+      background: url('https://images.unsplash.com/photo-1558030006-450675393462?w=600&q=80') center/cover no-repeat;
+      border: 3px solid var(--amber);
+    }
+
+    .story-stat {
+      position: absolute;
+      top: 40%;
+      right: 0;
+      transform: translateX(30%) translateY(-50%);
+      background: var(--amber);
+      color: var(--black);
+      padding: 1.2rem;
+      text-align: center;
+      border-radius: 4px;
+      z-index: 2;
+    }
+
+    .story-stat strong {
+      display: block;
+      font-family: 'Oswald', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+    }
+
+    .story-stat span {
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .story-text p {
+      color: var(--gray-light);
+      line-height: 1.8;
+      margin-bottom: 1.2rem;
+      font-size: 1.02rem;
+    }
+
+    .story-pillars {
+      display: flex;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .pillar {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .pillar strong {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.1rem;
+      color: var(--amber);
+      letter-spacing: 0.05em;
+    }
+
+    .pillar span {
+      font-size: 0.8rem;
+      color: var(--gray);
+    }
+
+    /* ─── PRODUCTS ─── */
+    #products { background: var(--black); }
+
+    .products-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .product-card {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      group: true;
+    }
+
+    .product-bg {
+      height: 560px;
+      display: flex;
+      align-items: flex-end;
+      padding: 2.5rem;
+      position: relative;
+      transition: transform 0.5s ease;
+    }
+
+    .product-card:hover .product-bg { transform: scale(1.03); }
+
+    .product-bg-beef {
+      background:
+        linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.25) 60%, rgba(0,0,0,0.4) 100%),
+        url('https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=900&q=85') center/cover no-repeat;
+    }
+
+    .product-bg-ribs {
+      background:
+        linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.25) 60%, rgba(0,0,0,0.4) 100%),
+        url('https://images.unsplash.com/photo-1679711246825-1f2bd51b16d0?w=900&q=85') center/cover no-repeat;
+    }
+
+    .product-emoji-bg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -60%);
+      font-size: 9rem;
+      opacity: 0.25;
+      pointer-events: none;
+    }
+
+    .product-content { position: relative; z-index: 1; }
+
+    .product-tag {
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 0.5rem;
+    }
+
+    .product-name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 0.8rem;
+    }
+
+    .product-desc {
+      font-size: 0.9rem;
+      color: var(--gray-light);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      max-width: 340px;
+    }
+
+    .product-details {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .product-detail {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .product-detail span:first-child {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gray);
+    }
+
+    .product-detail span:last-child {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1rem;
+      color: var(--white);
+    }
+
+    .product-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--amber);
+      text-decoration: none;
+      border-bottom: 1px solid var(--amber);
+      padding-bottom: 0.2rem;
+      transition: color 0.2s;
+    }
+
+    .product-btn:hover { color: var(--white); border-color: var(--white); }
+
+    /* ─── PROCESS ─── */
+    #process {
+      background: var(--charcoal);
+      text-align: center;
+    }
+
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 3rem;
+      margin-top: 4rem;
+      max-width: 1000px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .process-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      position: relative;
+    }
+
+    .process-step::after {
+      content: '→';
+      position: absolute;
+      right: -1.5rem;
+      top: 1.5rem;
+      font-size: 1.2rem;
+      color: var(--amber);
+      opacity: 0.5;
+    }
+
+    .process-step:last-child::after { display: none; }
+
+    .step-icon {
+      width: 72px;
+      height: 72px;
+      background: var(--smoke);
+      border: 2px solid var(--brown);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .process-step:hover .step-icon { border-color: var(--amber); transform: scale(1.08); }
+
+    .step-num {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      color: var(--amber);
+      text-transform: uppercase;
+    }
+
+    .step-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+    }
+
+    .step-desc {
+      font-size: 0.85rem;
+      color: var(--gray);
+      line-height: 1.6;
+    }
+
+    /* ─── ORDER ─── */
+    #order { background: var(--black); }
+
+    .order-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .order-info h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .order-info p {
+      color: var(--gray-light);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+
+    .delivery-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--smoke);
+      border: 1px solid var(--brown);
+      padding: 0.6rem 1rem;
+      border-radius: 4px;
+      font-size: 0.82rem;
+      color: var(--gray-light);
+      margin-top: 1rem;
+    }
+
+    .delivery-badge strong { color: var(--amber); }
+
+    .payment-methods {
+      margin-top: 1.5rem;
+      display: flex;
+      gap: 0.7rem;
+      flex-wrap: wrap;
+    }
+
+    .pay-tag {
+      background: var(--smoke);
+      padding: 0.4rem 0.8rem;
+      border-radius: 2px;
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+      color: var(--gray-light);
+    }
+
+    .order-form { display: flex; flex-direction: column; gap: 1rem; }
+
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+
+    .form-group label {
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gray);
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: var(--charcoal);
+      border: 1px solid var(--smoke);
+      color: var(--white);
+      padding: 0.75rem 1rem;
+      border-radius: 2px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.92rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--amber); }
+
+    .form-group select option { background: var(--charcoal); }
+
+    .form-group textarea { resize: vertical; min-height: 90px; }
+
+    .order-note {
+      font-size: 0.78rem;
+      color: var(--gray);
+      line-height: 1.5;
+    }
+
+    /* ─── ORDER ITEMS (multi-product) ─── */
+    .order-items {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin-top: 0.2rem;
+    }
+
+    .order-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--charcoal);
+      border: 1px solid var(--smoke);
+      border-radius: 2px;
+      padding: 0.75rem 1rem;
+      transition: border-color 0.2s;
+    }
+
+    .order-item:hover { border-color: var(--brown); }
+
+    .order-item-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .order-item-name {
+      font-size: 0.92rem;
+      color: var(--white);
+      font-weight: 500;
+    }
+
+    .order-item-price {
+      font-size: 0.75rem;
+      color: var(--amber);
+      letter-spacing: 0.05em;
+    }
+
+    .order-item-qty {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .qty-btn {
+      width: 32px;
+      height: 32px;
+      background: var(--smoke);
+      border: 1px solid var(--brown);
+      color: var(--white);
+      font-size: 1.1rem;
+      cursor: pointer;
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .qty-btn:hover { background: var(--amber); border-color: var(--amber); color: var(--black); }
+
+    .qty-display {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.1rem;
+      min-width: 20px;
+      text-align: center;
+      color: var(--white);
+    }
+
+    .order-total {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--smoke);
+      border: 1px solid var(--amber);
+      border-radius: 2px;
+      padding: 0.85rem 1rem;
+      margin-top: 0.6rem;
+    }
+
+    .order-total-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gray-light);
+    }
+
+    .order-total-amount {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.4rem;
+      color: var(--amber);
+      font-weight: 700;
+    }
+
+    /* ─── NARRATIVE ─── */
+    #narrative {
+      background:
+        linear-gradient(rgba(13,13,13,0.82), rgba(13,13,13,0.9)),
+        url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=1600&q=80') center/cover no-repeat fixed;
+      text-align: center;
+      padding: 8rem 5vw;
+    }
+
+    .pull-quote {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 4vw, 3rem);
+      font-weight: 700;
+      font-style: italic;
+      line-height: 1.3;
+      max-width: 900px;
+      margin: 0 auto 2rem;
+      color: var(--cream);
+    }
+
+    .pull-quote span { color: var(--amber); }
+
+    .narrative-body {
+      max-width: 680px;
+      margin: 0 auto 3rem;
+      color: var(--gray-light);
+      line-height: 1.8;
+      font-size: 1.05rem;
+    }
+
+    .social-row {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+
+    .social-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--smoke);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--gray-light);
+      padding: 0.6rem 1.4rem;
+      border-radius: 2px;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+
+    .social-btn:hover { background: var(--amber); color: var(--black); border-color: var(--amber); }
+
+    /* ─── BRAND VALUES ─── */
+    #values {
+      background: var(--black);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+    }
+
+    .value-card {
+      padding: 3.5rem 2.5rem;
+      border-right: 1px solid var(--smoke);
+      transition: background 0.3s;
+    }
+
+    .value-card:last-child { border-right: none; }
+
+    .value-card:hover { background: var(--charcoal); }
+
+    .value-icon { font-size: 2.5rem; margin-bottom: 1.2rem; }
+
+    .value-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 0.8rem;
+    }
+
+    .value-desc {
+      color: var(--gray);
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+
+    /* ─── CONTACT / FIND US ─── */
+    #contact {
+      background: var(--charcoal);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .contact-text p {
+      color: var(--gray-light);
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-list { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; }
+
+    .contact-list li {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 0.95rem;
+      color: var(--gray-light);
+    }
+
+    .contact-list li span:first-child { color: var(--amber); font-size: 1.2rem; }
+
+    .contact-visual {
+      background: var(--smoke);
+      border-radius: 4px;
+      padding: 3rem;
+      border: 1px solid var(--brown);
+      text-align: center;
+    }
+
+    .brand-monogram {
+      font-family: 'Playfair Display', serif;
+      font-size: 5rem;
+      font-weight: 900;
+      color: var(--amber);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .brand-tagline {
+      font-family: 'Oswald', sans-serif;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      color: var(--gray);
+    }
+
+    .brand-divider {
+      width: 50px;
+      height: 2px;
+      background: var(--amber);
+      margin: 1.5rem auto;
+    }
+
+    .brand-creds {
+      font-size: 0.82rem;
+      color: var(--gray-light);
+      line-height: 1.8;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--black);
+      padding: 3rem 5vw;
+      border-top: 1px solid var(--smoke);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-logo {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .footer-logo span { color: var(--amber); }
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .footer-links a {
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--amber); }
+
+    .footer-copy {
+      font-size: 0.75rem;
+      color: var(--gray);
+    }
+
+    /* ─── ANIMATIONS ─── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      #story { grid-template-columns: 1fr; }
+      .story-visual { height: 280px; }
+      .story-stat { display: none; }
+      .products-grid { grid-template-columns: 1fr; }
+      .process-steps { grid-template-columns: 1fr 1fr; }
+      .process-step::after { display: none; }
+      .order-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      #values { grid-template-columns: 1fr; }
+      .value-card { border-right: none; border-bottom: 1px solid var(--smoke); }
+      #contact { grid-template-columns: 1fr; gap: 2.5rem; }
+      .nav-links { display: none; }
+    }
+
+    @media (max-width: 600px) {
+      .process-steps { grid-template-columns: 1fr; }
+      footer { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#hero" class="nav-logo">Double <span>Barrel</span></a>
+    <ul class="nav-links">
+      <li><a href="#story">Our Story</a></li>
+      <li><a href="#products">Menu</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#order" class="nav-cta">Order Now</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-smoke"></div>
+    <div>
+      <div class="hero-badge">Premium Smoked Meats · Philippines</div>
+      <h1 class="hero-title">
+        Slow Fire.<br /><em>Bold</em> Flavour.<br />No Shortcuts.
+      </h1>
+      <p class="hero-sub">
+        Handcrafted smoked meats for those who know the difference between fast food and real barbecue.
+        Double Barrel PH — where patience meets fire.
+      </p>
+      <div class="hero-actions">
+        <a href="#order" class="btn-primary">Order Now</a>
+        <a href="#products" class="btn-ghost">See the Menu</a>
+      </div>
+      <div class="hero-scroll">Scroll to explore</div>
+    </div>
+  </section>
+
+  <!-- STORY -->
+  <section id="story">
+    <div class="story-visual fade-in">
+      <div class="story-card story-card-main"></div>
+      <div class="story-card story-card-accent"></div>
+      <div class="story-stat">
+        <strong>12+</strong>
+        <span>Hours Smoked</span>
+      </div>
+    </div>
+    <div class="story-text fade-in">
+      <p class="section-label">Our Story</p>
+      <h2 class="section-title">Born from the <em>Barrel,</em> Built for the Table.</h2>
+      <div class="divider"></div>
+      <p>
+        Double Barrel PH started with one obsession: what happens when you give smoked meat the time it deserves?
+        No shortcuts, no sauce to mask it. Just hardwood, heat, and hours of commitment.
+      </p>
+      <p>
+        We craft every rack and every belly slab with the same principle — if you wouldn't be proud to serve it
+        at your table, it doesn't leave ours. Premium quality, unapologetically bold, made for Filipinos
+        who know real barbecue.
+      </p>
+      <p>
+        This is not fast food. This is the real deal.
+      </p>
+      <div class="story-pillars">
+        <div class="pillar">
+          <strong>Slow</strong>
+          <span>12–16 hr smoke</span>
+        </div>
+        <div class="pillar">
+          <strong>Bold</strong>
+          <span>No fillers, no fluff</span>
+        </div>
+        <div class="pillar">
+          <strong>Premium</strong>
+          <span>Handpicked cuts only</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section id="products">
+    <div class="products-header fade-in">
+      <p class="section-label">The Menu</p>
+      <h2 class="section-title">Two Cuts. <em>Infinite</em> Satisfaction.</h2>
+      <div class="divider" style="margin: 0 auto;"></div>
+    </div>
+    <div class="products-grid fade-in">
+      <!-- Beef Belly -->
+      <div class="product-card">
+        <div class="product-bg product-bg-beef">
+          <!-- real image via CSS background -->
+          <div class="product-content">
+            <p class="product-tag">Signature Cut</p>
+            <h3 class="product-name">Smoked<br />Beef Belly</h3>
+            <p class="product-desc">
+              Marbled, rich, and impossibly tender. Our beef belly spends over 12 hours in the smoke,
+              building a bark so deep it cracks when you slice it. This is brisket culture, Filipino style.
+            </p>
+            <div class="product-details">
+              <div class="product-detail">
+                <span>Cook Time</span>
+                <span>12–14 hrs</span>
+              </div>
+              <div class="product-detail">
+                <span>Wood</span>
+                <span>Hardwood</span>
+              </div>
+              <div class="product-detail">
+                <span>Serves</span>
+                <span>2–4 pax</span>
+              </div>
+            </div>
+            <a href="#order" class="product-btn">Order This Cut →</a>
+          </div>
+        </div>
+      </div>
+      <!-- Pork Ribs -->
+      <div class="product-card">
+        <div class="product-bg product-bg-ribs">
+          <!-- real image via CSS background -->
+          <div class="product-content">
+            <p class="product-tag">Fan Favourite</p>
+            <h3 class="product-name">Smoked<br />Pork Ribs</h3>
+            <p class="product-desc">
+              Fall-off-the-bone tender, with a smoke ring that tells the whole story. Our pork ribs are
+              seasoned with a dry rub and left to the fire — no sauce needed. Pure, honest, unforgettable.
+            </p>
+            <div class="product-details">
+              <div class="product-detail">
+                <span>Cook Time</span>
+                <span>10–12 hrs</span>
+              </div>
+              <div class="product-detail">
+                <span>Style</span>
+                <span>Dry Rub</span>
+              </div>
+              <div class="product-detail">
+                <span>Serves</span>
+                <span>3–5 pax</span>
+              </div>
+            </div>
+            <a href="#order" class="product-btn">Order This Cut →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="process">
+    <p class="section-label fade-in">The Double Barrel Way</p>
+    <h2 class="section-title fade-in">From Fire to <em>Your</em> Door</h2>
+    <div class="process-steps">
+      <div class="process-step fade-in">
+        <div class="step-icon">🥩</div>
+        <div class="step-num">Step 01</div>
+        <div class="step-title">Select the Cut</div>
+        <p class="step-desc">We source only premium, handpicked cuts. Marbling matters. Quality is non-negotiable.</p>
+      </div>
+      <div class="process-step fade-in">
+        <div class="step-icon">🧂</div>
+        <div class="step-num">Step 02</div>
+        <div class="step-title">Dry Rub &amp; Rest</div>
+        <p class="step-desc">A proprietary dry rub is applied and the meat rests overnight. Patience is the first ingredient.</p>
+      </div>
+      <div class="process-step fade-in">
+        <div class="step-icon">🔥</div>
+        <div class="step-num">Step 03</div>
+        <div class="step-title">Low &amp; Slow Fire</div>
+        <p class="step-desc">12+ hours in the barrel at controlled heat. This is where the magic — and the smoke ring — happens.</p>
+      </div>
+      <div class="process-step fade-in">
+        <div class="step-icon">🛵</div>
+        <div class="step-num">Step 04</div>
+        <div class="step-title">Delivered to You</div>
+        <p class="step-desc">Via Lalamove, your order arrives hot, packed properly, and ready to impress your table.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ORDER -->
+  <section id="order">
+    <div class="order-inner">
+      <div class="order-info fade-in">
+        <p class="section-label">Place an Order</p>
+        <h2 class="section-title" style="font-size:2.2rem;">Ready to <em>Experience</em> It?</h2>
+        <div class="divider"></div>
+        <p>
+          Orders are pre-arranged to ensure every cut receives the time it deserves.
+          We don't rush perfection — so plan ahead and your table will thank you.
+        </p>
+        <p>
+          Fill in the form and we'll confirm your order and schedule delivery via
+          <strong style="color:var(--amber)">Lalamove</strong> straight to your door.
+        </p>
+        <div class="delivery-badge">
+          🛵 &nbsp; Delivered via <strong>&nbsp;Lalamove</strong>
+        </div>
+        <div class="payment-methods">
+          <span class="pay-tag">GCash</span>
+          <span class="pay-tag">Maya</span>
+          <span class="pay-tag">Bank Transfer</span>
+          <span class="pay-tag">Credit Card</span>
+          <span class="pay-tag">Cash on Delivery</span>
+        </div>
+      </div>
+      <form class="order-form fade-in" name="order" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="orderForm">
+        <input type="hidden" name="form-name" value="order" />
+        <input type="hidden" name="bot-field" style="display:none" />
+        <div class="form-group">
+          <label>Full Name</label>
+          <input id="f-name" name="name" type="text" placeholder="Juan dela Cruz" />
+        </div>
+        <div class="form-group">
+          <label>Contact Number</label>
+          <input id="f-phone" name="phone" type="tel" placeholder="+63 9XX XXX XXXX" />
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input id="f-email" name="email_address" type="email" placeholder="you@email.com" />
+        </div>
+        <div class="form-group">
+          <label>Delivery Address</label>
+          <input id="f-address" name="address" type="text" placeholder="Start typing your address…" autocomplete="off" />
+        </div>
+        <div class="form-group">
+          <label>Your Order</label>
+          <div class="order-items">
+            <div class="order-item">
+              <div class="order-item-info">
+                <span class="order-item-name">🥩 Smoked Beef Belly</span>
+                <span class="order-item-price">₱1,200 / order</span>
+              </div>
+              <div class="order-item-qty">
+                <button type="button" class="qty-btn" onclick="changeQty('beef', -1)">−</button>
+                <span class="qty-display" id="qty-beef">0</span>
+                <button type="button" class="qty-btn" onclick="changeQty('beef', 1)">+</button>
+              </div>
+            </div>
+            <div class="order-item">
+              <div class="order-item-info">
+                <span class="order-item-name">🍖 Smoked Pork Ribs</span>
+                <span class="order-item-price">₱950 / order</span>
+              </div>
+              <div class="order-item-qty">
+                <button type="button" class="qty-btn" onclick="changeQty('ribs', -1)">−</button>
+                <span class="qty-display" id="qty-ribs">0</span>
+                <button type="button" class="qty-btn" onclick="changeQty('ribs', 1)">+</button>
+              </div>
+            </div>
+          </div>
+          <input type="hidden" id="f-product" name="product" />
+          <div class="order-total" id="orderTotal" style="display:none;">
+            <span class="order-total-label">Order Total</span>
+            <span class="order-total-amount" id="totalAmount">₱0</span>
+          </div>
+          <input type="hidden" id="f-total" name="total" />
+        </div>
+        <div class="form-group">
+          <label>Preferred Pickup / Delivery Date</label>
+          <input id="f-date" name="date" type="date" min="2026-01-01" placeholder="YYYY-MM-DD" />
+        </div>
+        <div class="form-group">
+          <label>Special Requests (optional)</label>
+          <textarea id="f-notes" name="notes" placeholder="Any special instructions, serving size, or occasion details…"></textarea>
+        </div>
+        <button class="btn-primary" id="submitBtn" type="button" onclick="submitOrder()">Submit Order</button>
+        <p class="order-note" id="formMsg"></p>
+        <p class="order-note">* Orders placed here go directly to our team. We will contact you within 24 hours to confirm and collect payment.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- NARRATIVE -->
+  <section id="narrative">
+    <p class="section-label fade-in">The Double Barrel Manifesto</p>
+    <blockquote class="pull-quote fade-in">
+      "Real barbecue doesn't ask for attention. <span>It commands it.</span>"
+    </blockquote>
+    <p class="narrative-body fade-in">
+      There's a moment — right when you slice through a properly smoked piece of meat —
+      where time stops. The bark gives way. The smoke ring reveals itself. The juices run slow.
+      That moment? That's what we build toward. Every. Single. Time.
+      <br /><br />
+      Double Barrel PH isn't just food. It's the centerpiece of every celebration,
+      every gathering, every moment worth remembering. We smoke slow so you can celebrate loud.
+    </p>
+    <div class="social-row fade-in">
+      <a href="https://www.instagram.com/doublebarrelph" target="_blank" class="social-btn">
+        📸 &nbsp; @doublebarrelph
+      </a>
+      <a href="#order" class="social-btn">
+        🛒 &nbsp; Order Now
+      </a>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <div id="values">
+    <div class="value-card fade-in">
+      <div class="value-icon">🔥</div>
+      <div class="value-title">Real Fire Only</div>
+      <p class="value-desc">No gas shortcuts, no half-measures. Every order is cooked over real hardwood for genuine smoke flavour you can taste in every bite.</p>
+    </div>
+    <div class="value-card fade-in">
+      <div class="value-icon">⏱</div>
+      <div class="value-title">Time is the Ingredient</div>
+      <p class="value-desc">We don't rush. The best smoked meat demands patience. Our minimum smoke time is 10 hours — because quality can't be fast-tracked.</p>
+    </div>
+    <div class="value-card fade-in">
+      <div class="value-icon">🏆</div>
+      <div class="value-title">Premium, Always</div>
+      <p class="value-desc">From cut selection to plating, we operate at a premium level. Middle to upper-class taste, Filipino soul. No exceptions.</p>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact-text fade-in">
+      <p class="section-label">Get in Touch</p>
+      <h2 class="section-title">Let's Talk <em>Meat.</em></h2>
+      <div class="divider"></div>
+      <p>
+        Whether you're planning a celebration, a corporate event, or you simply want to know
+        more about our products — we'd love to hear from you.
+      </p>
+      <ul class="contact-list">
+        <li>
+          <span>📸</span>
+          <span><a href="https://www.instagram.com/doublebarrelph" target="_blank" style="color:var(--amber);text-decoration:none;">@doublebarrelph</a> on Instagram</span>
+        </li>
+        <li>
+          <span>📦</span>
+          <span>Orders delivered via Lalamove</span>
+        </li>
+        <li>
+          <span>📅</span>
+          <span>Pre-order required · 24-hr lead time</span>
+        </li>
+        <li>
+          <span>🇵🇭</span>
+          <span>Proudly Filipino · Premium Smoked Meats</span>
+        </li>
+      </ul>
+    </div>
+    <div class="contact-visual fade-in">
+      <div class="brand-monogram">DB</div>
+      <div class="brand-tagline">Double Barrel PH</div>
+      <div class="brand-divider"></div>
+      <div class="brand-creds">
+        Premium Smoked Meats<br />
+        Slow Fire · Bold Flavour · No Shortcuts<br /><br />
+        <span style="color:var(--amber)">Smoked Beef Belly · Smoked Pork Ribs</span>
+      </div>
+      <br />
+      <a href="#order" class="btn-primary" style="display:inline-block;margin-top:0.5rem;">Order Now</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">Double <span>Barrel</span> PH</div>
+    <ul class="footer-links">
+      <li><a href="#story">Story</a></li>
+      <li><a href="#products">Menu</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#order">Order</a></li>
+      <li><a href="https://www.instagram.com/doublebarrelph" target="_blank">Instagram</a></li>
+    </ul>
+    <p class="footer-copy">© 2024 Double Barrel PH · Premium Smoked Meats</p>
+  </footer>
+
+  <!-- ── GOOGLE MAPS PLACES API ──────────────────────────────────────────
+       Replace YOUR_GOOGLE_MAPS_API_KEY below with your actual API key.
+       Get one at: https://console.cloud.google.com → Maps → Places API
+  ──────────────────────────────────────────────────────────────────── -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&libraries=places&callback=initAutocomplete" async defer></script>
+
+  <script>
+    // ── Fade-in on scroll ──────────────────────────────────────────────
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('visible');
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // ── Google Maps Autocomplete ───────────────────────────────────────
+    function initAutocomplete() {
+      const input = document.getElementById('f-address');
+      const autocomplete = new google.maps.places.Autocomplete(input, {
+        componentRestrictions: { country: 'ph' }, // restrict to Philippines
+        fields: ['formatted_address'],
+        types: ['address']
+      });
+      autocomplete.addListener('place_changed', () => {
+        const place = autocomplete.getPlace();
+        if (place.formatted_address) {
+          input.value = place.formatted_address;
+        }
+      });
+    }
+
+    // ── Product quantities & pricing ──────────────────────────────────
+    const PRICES = { beef: 1200, ribs: 950 };
+    const qty    = { beef: 0, ribs: 0 };
+
+    function changeQty(item, delta) {
+      qty[item] = Math.max(0, qty[item] + delta);
+      document.getElementById('qty-' + item).textContent = qty[item];
+      updateTotal();
+    }
+
+    function updateTotal() {
+      const total = qty.beef * PRICES.beef + qty.ribs * PRICES.ribs;
+      const totalEl = document.getElementById('orderTotal');
+      const amountEl = document.getElementById('totalAmount');
+
+      if (total > 0) {
+        totalEl.style.display = 'flex';
+        amountEl.textContent = '₱' + total.toLocaleString();
+      } else {
+        totalEl.style.display = 'none';
+      }
+
+      // Build product summary string for the hidden field & webhook
+      const parts = [];
+      if (qty.beef > 0) parts.push(`Smoked Beef Belly x${qty.beef} (₱${(qty.beef * PRICES.beef).toLocaleString()})`);
+      if (qty.ribs > 0) parts.push(`Smoked Pork Ribs x${qty.ribs} (₱${(qty.ribs * PRICES.ribs).toLocaleString()})`);
+      document.getElementById('f-product').value = parts.join(', ');
+      document.getElementById('f-total').value   = total > 0 ? '₱' + total.toLocaleString() : '';
+    }
+
+    // ── Submit order → n8n webhook ────────────────────────────────────
+    async function submitOrder() {
+      const name          = document.getElementById('f-name').value.trim();
+      const phone         = document.getElementById('f-phone').value.trim();
+      const email_address = document.getElementById('f-email').value.trim();
+      const address       = document.getElementById('f-address').value.trim();
+      const product       = document.getElementById('f-product').value;
+      const total         = document.getElementById('f-total').value;
+      const date          = document.getElementById('f-date').value;
+      const notes         = document.getElementById('f-notes').value.trim();
+      const msg           = document.getElementById('formMsg');
+      const btn           = document.getElementById('submitBtn');
+
+      const missing = [];
+      if (!name)          missing.push('Full Name');
+      if (!phone)         missing.push('Contact Number');
+      if (!email_address) missing.push('Email Address');
+      if (!address)       missing.push('Delivery Address');
+      if (!product)       missing.push('Product (select at least one item)');
+      if (!date)          missing.push('Delivery Date');
+
+      if (missing.length > 0) {
+        msg.style.color = '#e05a2b';
+        msg.textContent = '⚠ Please fill in: ' + missing.join(', ');
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+      msg.style.color = '#888';
+      msg.textContent = '';
+
+      // Send to N8N webhook
+      try {
+        await fetch('https://arjayatentar.app.n8n.cloud/webhook/order', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name, phone, email_address, address, product, total, date, notes,
+            submitted_at: new Date().toISOString(),
+            source: 'Double Barrel PH Website'
+          })
+        });
+      } catch(e) { /* CORS blocks reading response but data was sent */ }
+
+      msg.style.color = '#c8722a';
+      msg.textContent = '🔥 Order received! We\'ll reach out within 24 hours to confirm.';
+      btn.textContent = 'Order Sent ✓';
+
+      // Reset form
+      ['f-name','f-phone','f-email','f-address','f-notes'].forEach(id => document.getElementById(id).value = '');
+      document.getElementById('f-date').value = '';
+      qty.beef = 0; qty.ribs = 0;
+      document.getElementById('qty-beef').textContent = '0';
+      document.getElementById('qty-ribs').textContent = '0';
+      updateTotal();
+    }
+  </script>
+</body>
+</html>
