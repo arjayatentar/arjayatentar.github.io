@@ -1,1261 +1,1119 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Double Barrel PH — Premium Smoked Meats</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --black: #0d0d0d;
-      --charcoal: #1a1a1a;
-      --smoke: #2b2b2b;
-      --brown: #6b3f1e;
-      --brown-light: #8b5530;
-      --amber: #c8722a;
-      --cream: #f5ede2;
-      --white: #ffffff;
-      --gray: #888888;
-      --gray-light: #cccccc;
-    }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--black);
-      color: var(--white);
-      overflow-x: hidden;
-    }
-    /* ─── NAV ─── */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1.2rem 5vw;
-      background: rgba(13,13,13,0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(200,114,42,0.15);
-    }
-    .nav-logo {
-      font-family: 'Oswald', sans-serif;
-      font-size: 1.5rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--white);
-      text-decoration: none;
-    }
-    .nav-logo span { color: var(--amber); }
-    .nav-links {
-      display: flex;
-      gap: 2.5rem;
-      list-style: none;
-    }
-    .nav-links a {
-      font-size: 0.78rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--gray-light);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--amber); }
-    .nav-cta {
-      background: var(--amber);
-      color: var(--black) !important;
-      padding: 0.55rem 1.4rem;
-      font-weight: 600 !important;
-      border-radius: 2px;
-      transition: background 0.2s !important;
-    }
-    .nav-cta:hover { background: var(--brown-light) !important; color: var(--white) !important; }
-    /* ─── HERO ─── */
-    #hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-      padding: 8rem 5vw 4rem;
-      background:
-        linear-gradient(to bottom, rgba(13,13,13,0.55) 0%, rgba(13,13,13,0.8) 60%, rgba(13,13,13,1) 100%),
-        url('https://images.unsplash.com/photo-1738574138342-ed19c1c1056f?w=1800&q=85') center/cover no-repeat;
-    }
-    .hero-smoke {
-      position: absolute;
-      inset: 0;
-      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='800'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='800' height='800' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-      opacity: 0.4;
-      pointer-events: none;
-    }
-    .hero-badge {
-      display: inline-block;
-      font-size: 0.7rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--amber);
-      border: 1px solid var(--amber);
-      padding: 0.35rem 1.2rem;
-      margin-bottom: 2rem;
-      border-radius: 2px;
-    }
-    .hero-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(3.5rem, 9vw, 8rem);
-      font-weight: 900;
-      line-height: 0.92;
-      letter-spacing: -0.02em;
-      margin-bottom: 1.5rem;
-    }
-    .hero-title em {
-      font-style: italic;
-      color: var(--amber);
-    }
-    .hero-sub {
-      font-size: clamp(1rem, 2vw, 1.2rem);
-      color: var(--gray-light);
-      font-weight: 300;
-      max-width: 520px;
-      margin: 0 auto 2.5rem;
-      line-height: 1.7;
-    }
-    .hero-actions {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    .btn-primary {
-      background: var(--amber);
-      color: var(--black);
-      font-family: 'Oswald', sans-serif;
-      font-size: 0.85rem;
-      font-weight: 600;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      padding: 0.9rem 2.5rem;
-      border: none;
-      cursor: pointer;
-      border-radius: 2px;
-      text-decoration: none;
-      display: inline-block;
-      transition: background 0.2s, transform 0.15s;
-    }
-    .btn-primary:hover { background: var(--brown-light); color: var(--white); transform: translateY(-2px); }
-    .btn-ghost {
-      background: transparent;
-      color: var(--white);
-      font-family: 'Oswald', sans-serif;
-      font-size: 0.85rem;
-      font-weight: 600;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      padding: 0.9rem 2.5rem;
-      border: 1px solid rgba(255,255,255,0.3);
-      cursor: pointer;
-      border-radius: 2px;
-      text-decoration: none;
-      display: inline-block;
-      transition: border-color 0.2s, color 0.2s, transform 0.15s;
-    }
-    .btn-ghost:hover { border-color: var(--amber); color: var(--amber); transform: translateY(-2px); }
-    .hero-scroll {
-      margin-top: 4rem;
-      font-size: 0.72rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--gray);
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      justify-content: center;
-    }
-    .hero-scroll::after {
-      content: '';
-      display: block;
-      width: 40px;
-      height: 1px;
-      background: var(--gray);
-      animation: pulse 2s ease-in-out infinite;
-    }
-    @keyframes pulse { 0%,100%{opacity:0.3} 50%{opacity:1} }
-    /* ─── SECTION COMMON ─── */
-    section { padding: 6rem 5vw; }
-    .section-label {
-      font-size: 0.7rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--amber);
-      margin-bottom: 1rem;
-    }
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.2rem, 5vw, 4rem);
-      font-weight: 900;
-      line-height: 1.05;
-      margin-bottom: 1.5rem;
-    }
-    .section-title em { font-style: italic; color: var(--amber); }
-    .divider {
-      width: 60px;
-      height: 3px;
-      background: var(--amber);
-      margin-bottom: 2rem;
-    }
-    /* ─── STORY ─── */
-    #story {
-      background: var(--charcoal);
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-      align-items: center;
-    }
-    .story-visual {
-      position: relative;
-      height: 500px;
-    }
-    .story-card {
-      position: absolute;
-      border-radius: 4px;
-      overflow: hidden;
-      background: var(--smoke);
-    }
-    .story-card-main {
-      top: 0; left: 0;
-      width: 75%;
-      height: 380px;
-      background: url('https://images.unsplash.com/photo-1544025162-d76694265947?w=900&q=80') center/cover no-repeat;
-    }
-    .story-card-accent {
-      bottom: 0; right: 0;
-      width: 50%;
-      height: 220px;
-      background: url('https://images.unsplash.com/photo-1558030006-450675393462?w=600&q=80') center/cover no-repeat;
-      border: 3px solid var(--amber);
-    }
-    .story-stat {
-      position: absolute;
-      top: 40%;
-      right: 0;
-      transform: translateX(30%) translateY(-50%);
-      background: var(--amber);
-      color: var(--black);
-      padding: 1.2rem;
-      text-align: center;
-      border-radius: 4px;
-      z-index: 2;
-    }
-    .story-stat strong {
-      display: block;
-      font-family: 'Oswald', sans-serif;
-      font-size: 2rem;
-      font-weight: 700;
-    }
-    .story-stat span {
-      font-size: 0.65rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-    .story-text p {
-      color: var(--gray-light);
-      line-height: 1.8;
-      margin-bottom: 1.2rem;
-      font-size: 1.02rem;
-    }
-    .story-pillars {
-      display: flex;
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-    .pillar {
-      display: flex;
-      flex-direction: column;
-      gap: 0.3rem;
-    }
-    .pillar strong {
-      font-family: 'Oswald', sans-serif;
-      font-size: 1.1rem;
-      color: var(--amber);
-      letter-spacing: 0.05em;
-    }
-    .pillar span {
-      font-size: 0.8rem;
-      color: var(--gray);
-    }
-    /* ─── PRODUCTS ─── */
-    #products { background: var(--black); }
-    .products-header {
-      text-align: center;
-      margin-bottom: 4rem;
-    }
-    .products-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2px;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-    .product-card {
-      position: relative;
-      overflow: hidden;
-      cursor: pointer;
-      group: true;
-    }
-    .product-bg {
-      height: 560px;
-      display: flex;
-      align-items: flex-end;
-      padding: 2.5rem;
-      position: relative;
-      transition: transform 0.5s ease;
-    }
-    .product-card:hover .product-bg { transform: scale(1.03); }
-    .product-bg-beef {
-      background:
-        linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.25) 60%, rgba(0,0,0,0.4) 100%),
-        url('https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=900&q=85') center/cover no-repeat;
-    }
-    .product-bg-ribs {
-      background:
-        linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.25) 60%, rgba(0,0,0,0.4) 100%),
-        url('https://images.unsplash.com/photo-1679711246825-1f2bd51b16d0?w=900&q=85') center/cover no-repeat;
-    }
-    .product-emoji-bg {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -60%);
-      font-size: 9rem;
-      opacity: 0.25;
-      pointer-events: none;
-    }
-    .product-content { position: relative; z-index: 1; }
-    .product-tag {
-      font-size: 0.68rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--amber);
-      margin-bottom: 0.5rem;
-    }
-    .product-name {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.8rem, 3vw, 2.5rem);
-      font-weight: 900;
-      line-height: 1.1;
-      margin-bottom: 0.8rem;
-    }
-    .product-desc {
-      font-size: 0.9rem;
-      color: var(--gray-light);
-      line-height: 1.6;
-      margin-bottom: 1.5rem;
-      max-width: 340px;
-    }
-    .product-details {
-      display: flex;
-      gap: 1.5rem;
-      margin-bottom: 1.5rem;
-    }
-    .product-detail {
-      display: flex;
-      flex-direction: column;
-      gap: 0.2rem;
-    }
-    .product-detail span:first-child {
-      font-size: 0.65rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--gray);
-    }
-    .product-detail span:last-child {
-      font-family: 'Oswald', sans-serif;
-      font-size: 1rem;
-      color: var(--white);
-    }
-    .product-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-family: 'Oswald', sans-serif;
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--amber);
-      text-decoration: none;
-      border-bottom: 1px solid var(--amber);
-      padding-bottom: 0.2rem;
-      transition: color 0.2s;
-    }
-    .product-btn:hover { color: var(--white); border-color: var(--white); }
-    /* ─── PROCESS ─── */
-    #process {
-      background: var(--charcoal);
-      text-align: center;
-    }
-    .process-steps {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 3rem;
-      margin-top: 4rem;
-      max-width: 1000px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .process-step {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-      position: relative;
-    }
-    .process-step::after {
-      content: '→';
-      position: absolute;
-      right: -1.5rem;
-      top: 1.5rem;
-      font-size: 1.2rem;
-      color: var(--amber);
-      opacity: 0.5;
-    }
-    .process-step:last-child::after { display: none; }
-    .step-icon {
-      width: 72px;
-      height: 72px;
-      background: var(--smoke);
-      border: 2px solid var(--brown);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.8rem;
-      transition: border-color 0.3s, transform 0.3s;
-    }
-    .process-step:hover .step-icon { border-color: var(--amber); transform: scale(1.08); }
-    .step-num {
-      font-family: 'Oswald', sans-serif;
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      color: var(--amber);
-      text-transform: uppercase;
-    }
-    .step-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.15rem;
-      font-weight: 700;
-    }
-    .step-desc {
-      font-size: 0.85rem;
-      color: var(--gray);
-      line-height: 1.6;
-    }
-    /* ─── ORDER ─── */
-    #order { background: var(--black); }
-    .order-inner {
-      max-width: 900px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: start;
-    }
-    .order-info h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.4rem;
-      margin-bottom: 1rem;
-    }
-    .order-info p {
-      color: var(--gray-light);
-      font-size: 0.95rem;
-      line-height: 1.7;
-      margin-bottom: 1rem;
-    }
-    .delivery-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: var(--smoke);
-      border: 1px solid var(--brown);
-      padding: 0.6rem 1rem;
-      border-radius: 4px;
-      font-size: 0.82rem;
-      color: var(--gray-light);
-      margin-top: 1rem;
-    }
-    .delivery-badge strong { color: var(--amber); }
-    .payment-methods {
-      margin-top: 1.5rem;
-      display: flex;
-      gap: 0.7rem;
-      flex-wrap: wrap;
-    }
-    .pay-tag {
-      background: var(--smoke);
-      padding: 0.4rem 0.8rem;
-      border-radius: 2px;
-      font-size: 0.75rem;
-      letter-spacing: 0.05em;
-      color: var(--gray-light);
-    }
-    .order-form { display: flex; flex-direction: column; gap: 1rem; }
-    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
-    .form-group label {
-      font-size: 0.72rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--gray);
-    }
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-      background: var(--charcoal);
-      border: 1px solid var(--smoke);
-      color: var(--white);
-      padding: 0.75rem 1rem;
-      border-radius: 2px;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.92rem;
-      outline: none;
-      transition: border-color 0.2s;
-    }
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus { border-color: var(--amber); }
-    .form-group select option { background: var(--charcoal); }
-    .form-group textarea { resize: vertical; min-height: 90px; }
-    .order-note {
-      font-size: 0.78rem;
-      color: var(--gray);
-      line-height: 1.5;
-    }
-    /* ─── ORDER ITEMS (multi-product) ─── */
-    .order-items {
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-      margin-top: 0.2rem;
-    }
-    .order-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: var(--charcoal);
-      border: 1px solid var(--smoke);
-      border-radius: 2px;
-      padding: 0.75rem 1rem;
-      transition: border-color 0.2s;
-    }
-    .order-item:hover { border-color: var(--brown); }
-    .order-item-info {
-      display: flex;
-      flex-direction: column;
-      gap: 0.2rem;
-    }
-    .order-item-name {
-      font-size: 0.92rem;
-      color: var(--white);
-      font-weight: 500;
-    }
-    .order-item-price {
-      font-size: 0.75rem;
-      color: var(--amber);
-      letter-spacing: 0.05em;
-    }
-    .order-item-qty {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-    .qty-btn {
-      width: 32px;
-      height: 32px;
-      background: var(--smoke);
-      border: 1px solid var(--brown);
-      color: var(--white);
-      font-size: 1.1rem;
-      cursor: pointer;
-      border-radius: 2px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      line-height: 1;
-      transition: background 0.2s, border-color 0.2s;
-    }
-    .qty-btn:hover { background: var(--amber); border-color: var(--amber); color: var(--black); }
-    .qty-display {
-      font-family: 'Oswald', sans-serif;
-      font-size: 1.1rem;
-      min-width: 20px;
-      text-align: center;
-      color: var(--white);
-    }
-    .order-total {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: var(--smoke);
-      border: 1px solid var(--amber);
-      border-radius: 2px;
-      padding: 0.85rem 1rem;
-      margin-top: 0.6rem;
-    }
-    .order-total-label {
-      font-size: 0.72rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--gray-light);
-    }
-    .order-total-amount {
-      font-family: 'Oswald', sans-serif;
-      font-size: 1.4rem;
-      color: var(--amber);
-      font-weight: 700;
-    }
-    /* ─── NARRATIVE ─── */
-    #narrative {
-      background:
-        linear-gradient(rgba(13,13,13,0.82), rgba(13,13,13,0.9)),
-        url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=1600&q=80') center/cover no-repeat fixed;
-      text-align: center;
-      padding: 8rem 5vw;
-    }
-    .pull-quote {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.6rem, 4vw, 3rem);
-      font-weight: 700;
-      font-style: italic;
-      line-height: 1.3;
-      max-width: 900px;
-      margin: 0 auto 2rem;
-      color: var(--cream);
-    }
-    .pull-quote span { color: var(--amber); }
-    .narrative-body {
-      max-width: 680px;
-      margin: 0 auto 3rem;
-      color: var(--gray-light);
-      line-height: 1.8;
-      font-size: 1.05rem;
-    }
-    .social-row {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      margin-top: 2rem;
-    }
-    .social-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: var(--smoke);
-      border: 1px solid rgba(255,255,255,0.1);
-      color: var(--gray-light);
-      padding: 0.6rem 1.4rem;
-      border-radius: 2px;
-      font-size: 0.8rem;
-      letter-spacing: 0.1em;
-      text-decoration: none;
-      text-transform: uppercase;
-      transition: background 0.2s, color 0.2s, border-color 0.2s;
-    }
-    .social-btn:hover { background: var(--amber); color: var(--black); border-color: var(--amber); }
-    /* ─── BRAND VALUES ─── */
-    #values {
-      background: var(--black);
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0;
-    }
-    .value-card {
-      padding: 3.5rem 2.5rem;
-      border-right: 1px solid var(--smoke);
-      transition: background 0.3s;
-    }
-    .value-card:last-child { border-right: none; }
-    .value-card:hover { background: var(--charcoal); }
-    .value-icon { font-size: 2.5rem; margin-bottom: 1.2rem; }
-    .value-title {
-      font-family: 'Oswald', sans-serif;
-      font-size: 1.1rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--amber);
-      margin-bottom: 0.8rem;
-    }
-    .value-desc {
-      color: var(--gray);
-      font-size: 0.9rem;
-      line-height: 1.7;
-    }
-    /* ─── CONTACT / FIND US ─── */
-    #contact {
-      background: var(--charcoal);
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-      align-items: center;
-    }
-    .contact-text p {
-      color: var(--gray-light);
-      line-height: 1.8;
-      margin-bottom: 1.5rem;
-    }
-    .contact-list { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; }
-    .contact-list li {
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-      font-size: 0.95rem;
-      color: var(--gray-light);
-    }
-    .contact-list li span:first-child { color: var(--amber); font-size: 1.2rem; }
-    .contact-visual {
-      background: var(--smoke);
-      border-radius: 4px;
-      padding: 3rem;
-      border: 1px solid var(--brown);
-      text-align: center;
-    }
-    .brand-monogram {
-      font-family: 'Playfair Display', serif;
-      font-size: 5rem;
-      font-weight: 900;
-      color: var(--amber);
-      line-height: 1;
-      margin-bottom: 0.5rem;
-    }
-    .brand-tagline {
-      font-family: 'Oswald', sans-serif;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      font-size: 0.75rem;
-      color: var(--gray);
-    }
-    .brand-divider {
-      width: 50px;
-      height: 2px;
-      background: var(--amber);
-      margin: 1.5rem auto;
-    }
-    .brand-creds {
-      font-size: 0.82rem;
-      color: var(--gray-light);
-      line-height: 1.8;
-    }
-    /* ─── FOOTER ─── */
-    footer {
-      background: var(--black);
-      padding: 3rem 5vw;
-      border-top: 1px solid var(--smoke);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-    .footer-logo {
-      font-family: 'Oswald', sans-serif;
-      font-size: 1.1rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-    }
-    .footer-logo span { color: var(--amber); }
-    .footer-links {
-      display: flex;
-      gap: 1.5rem;
-      list-style: none;
-    }
-    .footer-links a {
-      font-size: 0.78rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--gray);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    .footer-links a:hover { color: var(--amber); }
-    .footer-copy {
-      font-size: 0.75rem;
-      color: var(--gray);
-    }
-    /* ─── ANIMATIONS ─── */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .fade-in.visible { opacity: 1; transform: translateY(0); }
-    /* ─── RESPONSIVE ─── */
-    @media (max-width: 900px) {
-      #story { grid-template-columns: 1fr; }
-      .story-visual { height: 280px; }
-      .story-stat { display: none; }
-      .products-grid { grid-template-columns: 1fr; }
-      .process-steps { grid-template-columns: 1fr 1fr; }
-      .process-step::after { display: none; }
-      .order-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-      #values { grid-template-columns: 1fr; }
-      .value-card { border-right: none; border-bottom: 1px solid var(--smoke); }
-      #contact { grid-template-columns: 1fr; gap: 2.5rem; }
-      .nav-links { display: none; }
-    }
-    @media (max-width: 600px) {
-      .process-steps { grid-template-columns: 1fr; }
-      footer { flex-direction: column; text-align: center; }
-    }
-  </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Make It Better PH — Affordable Finds. Better-Looking Rooms.</title>
+<meta name="description" content="Budget room upgrades, honest product reviews, and room inspiration for Filipinos. Find the best affordable home finds here."/>
+<meta property="og:title" content="Make It Better PH"/>
+<meta property="og:description" content="Affordable finds. Better-looking rooms."/>
+<meta property="og:type" content="website"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --dark:#1F1B16;--dark-2:#2A2318;--dark-3:#332B1F;
+  --gold:#B98242;--gold-light:#C8A870;--gold-pale:#E8D4A8;
+  --cream:#FAF7F2;--cream-2:#F4EEE4;--warm-white:#FFFDF9;
+  --muted:#9A8070;--muted-2:#8A7060;--text:#2D2420;--text-light:#5C4E44;
+  --border:#E8D4A8;--r:14px;--r-sm:8px;--r-lg:20px;
+  --shadow:0 4px 24px rgba(31,27,22,.10);--shadow-lg:0 12px 48px rgba(31,27,22,.16);
+  --transition:all 0.35s cubic-bezier(0.16,1,0.3,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden}
+img{display:block;max-width:100%}a{color:inherit;text-decoration:none}
+button{cursor:pointer;border:none;background:none;font:inherit}ul{list-style:none}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(36px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes pulse{0%,100%{opacity:.4;transform:scale(1)}50%{opacity:.7;transform:scale(1.08)}}
+@keyframes slideLeft{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes modalIn{from{opacity:0;transform:scale(.93) translateY(16px)}to{opacity:1;transform:scale(1) translateY(0)}}
+
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .65s cubic-bezier(0.16,1,0.3,1),transform .65s cubic-bezier(0.16,1,0.3,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:.1s}.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}.reveal-delay-4{transition-delay:.4s}
+
+.label{font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+h1,h2,h3{font-family:'Playfair Display',serif;line-height:1.2}
+.section-title{font-size:clamp(1.7rem,4vw,2.6rem);color:var(--dark)}
+.section-subtitle{font-size:1rem;color:var(--text-light);margin-top:.6rem;max-width:520px}
+.container{max-width:1160px;margin:0 auto;padding:0 1.5rem}
+.section{padding:5rem 0}
+.gold-line{display:block;height:3px;background:var(--gold);border-radius:2px;margin-top:.75rem;width:40px}
+
+/* NAV */
+#nav{position:fixed;inset-x:0;top:0;z-index:100;transition:var(--transition)}
+#nav.scrolled{background:rgba(250,247,242,.96);backdrop-filter:blur(12px);box-shadow:0 2px 20px rgba(31,27,22,.08)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px}
+.nav-logo{display:flex;align-items:center;gap:.6rem}
+.nav-logo-text{font-family:'Playfair Display',serif;font-weight:900;font-size:1.1rem;color:var(--dark)}
+.nav-logo-text span{color:var(--gold)}
+.nav-links{display:flex;align-items:center;gap:2rem}
+.nav-links a{font-size:.9rem;font-weight:600;color:var(--text-light);transition:color .2s}
+.nav-links a:hover{color:var(--gold)}
+.nav-cta{background:var(--gold)!important;color:#fff!important;font-size:.85rem;font-weight:700;padding:.5rem 1.2rem;border-radius:50px;transition:var(--transition)}
+.nav-cta:hover{background:var(--dark)!important;transform:translateY(-1px)}
+.nav-burger{display:none;flex-direction:column;gap:5px;padding:4px}
+.nav-burger span{display:block;width:22px;height:2px;background:var(--dark);border-radius:2px;transition:var(--transition)}
+.mobile-menu{display:none;position:fixed;inset:0;background:var(--dark);z-index:99;flex-direction:column;align-items:center;justify-content:center;gap:2.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--cream);font-weight:700;transition:color .2s}
+.mobile-menu a:hover{color:var(--gold)}
+.mobile-close{position:absolute;top:1.5rem;right:1.5rem;color:var(--muted);font-size:1.5rem;padding:.5rem}
+@media(max-width:768px){.nav-links{display:none}.nav-burger{display:flex}}
+
+/* HERO */
+#hero{min-height:100svh;background:var(--dark);position:relative;display:flex;align-items:center;overflow:hidden;padding-top:68px}
+.hero-blob{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none}
+.hero-blob-1{width:420px;height:420px;background:rgba(185,130,66,.18);top:-80px;right:-60px;animation:pulse 7s ease-in-out infinite}
+.hero-blob-2{width:300px;height:300px;background:rgba(185,130,66,.10);bottom:40px;left:-60px;animation:pulse 9s ease-in-out infinite 1.5s}
+.hero-content{position:relative;z-index:1;padding:4rem 0}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(185,130,66,.12);border:1px solid rgba(185,130,66,.28);border-radius:50px;padding:.4rem 1rem;margin-bottom:1.5rem;animation:fadeIn .6s ease both}
+.hero-badge-dot{width:7px;height:7px;background:var(--gold);border-radius:50%;animation:pulse 2s ease-in-out infinite}
+.hero-badge span{font-size:.78rem;font-weight:600;color:var(--gold-light)}
+.hero-h1{font-size:clamp(2.4rem,7vw,5rem);color:var(--cream);line-height:1.1;animation:fadeUp .7s cubic-bezier(0.16,1,0.3,1) .15s both}
+.hero-h1 em{color:var(--gold);font-style:normal}
+.hero-sub{font-size:clamp(1rem,2vw,1.2rem);color:var(--muted);margin-top:1.2rem;max-width:480px;line-height:1.7;animation:fadeUp .7s cubic-bezier(0.16,1,0.3,1) .28s both}
+.hero-actions{display:flex;flex-wrap:wrap;gap:1rem;margin-top:2rem;animation:fadeUp .7s cubic-bezier(0.16,1,0.3,1) .4s both}
+.btn-primary{display:inline-flex;align-items:center;gap:.5rem;background:var(--gold);color:#fff;font-weight:700;font-size:.95rem;padding:.85rem 1.8rem;border-radius:50px;transition:var(--transition)}
+.btn-primary:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 8px 28px rgba(185,130,66,.35)}
+.btn-outline{display:inline-flex;align-items:center;gap:.5rem;border:1.5px solid rgba(185,130,66,.4);color:var(--gold-light);font-weight:600;font-size:.95rem;padding:.85rem 1.8rem;border-radius:50px;transition:var(--transition)}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
+.hero-stats{display:flex;gap:2.5rem;margin-top:3rem;padding-top:2.5rem;border-top:1px solid rgba(185,130,66,.15);animation:fadeUp .7s cubic-bezier(0.16,1,0.3,1) .52s both;flex-wrap:wrap}
+.hero-stat-num{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;color:var(--gold)}
+.hero-stat-label{font-size:.78rem;color:var(--muted);margin-top:.15rem;font-weight:500}
+.hero-image-col{position:relative;animation:fadeUp .8s cubic-bezier(0.16,1,0.3,1) .3s both}
+.hero-card{background:var(--dark-2);border:1px solid rgba(185,130,66,.15);border-radius:var(--r-lg);overflow:hidden;width:320px;box-shadow:var(--shadow-lg)}
+.hero-card img{width:100%;height:220px;object-fit:cover;opacity:.9}
+.hero-card-body{padding:1.2rem}
+.hero-card-tag{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem}
+.hero-card-title{font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--cream);line-height:1.35}
+.hero-card-meta{display:flex;align-items:center;justify-content:space-between;margin-top:.9rem}
+.hero-card-price{font-size:.95rem;font-weight:700;color:var(--gold)}
+.hero-card-cta{font-size:.8rem;font-weight:700;color:var(--dark);background:var(--gold);padding:.4rem .9rem;border-radius:50px;transition:var(--transition)}
+.hero-card-cta:hover{background:var(--gold-light)}
+.hero-float-badge{position:absolute;top:-16px;right:-16px;background:var(--gold);color:#fff;font-size:.72rem;font-weight:700;padding:.45rem .85rem;border-radius:50px;box-shadow:0 4px 16px rgba(185,130,66,.4);animation:float 3s ease-in-out infinite}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;align-items:center}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr}.hero-image-col{display:none}}
+
+/* TICKER */
+.ticker{background:var(--gold);overflow:hidden;padding:.65rem 0}
+.ticker-track{display:flex;width:max-content;animation:slideLeft 24s linear infinite}
+.ticker-item{white-space:nowrap;padding:0 2.5rem;font-size:.82rem;font-weight:700;color:#fff;letter-spacing:.04em;display:flex;align-items:center;gap:1rem}
+.ticker-item::after{content:'✦';opacity:.5}
+
+/* SECTION HEADER */
+.section-header{margin-bottom:2.5rem}
+.section-header-row{display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.view-all{display:inline-flex;align-items:center;gap:.35rem;font-size:.85rem;font-weight:700;color:var(--gold);border-bottom:1.5px solid transparent;transition:var(--transition)}
+.view-all:hover{border-color:var(--gold)}
+
+/* CAROUSEL */
+.carousel-wrap{position:relative}
+.carousel{display:flex;gap:1.25rem;overflow-x:auto;padding-bottom:1rem;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.carousel::-webkit-scrollbar{display:none}
+.carousel-nav{display:flex;gap:.5rem;margin-top:1.25rem;justify-content:flex-end}
+.carousel-btn{width:38px;height:38px;border-radius:50%;border:1.5px solid var(--border);background:var(--warm-white);display:flex;align-items:center;justify-content:center;color:var(--text);transition:var(--transition);flex-shrink:0}
+.carousel-btn:hover{background:var(--gold);border-color:var(--gold);color:#fff}
+.carousel-btn svg{width:16px;height:16px}
+
+/* PRODUCT CARD */
+.prod-card{flex:0 0 260px;scroll-snap-align:start;background:var(--warm-white);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;transition:var(--transition);position:relative}
+.prod-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);border-color:var(--gold-pale)}
+.prod-card-img{width:100%;height:200px;object-fit:cover;transition:transform .5s cubic-bezier(0.16,1,0.3,1)}
+.prod-card:hover .prod-card-img{transform:scale(1.05)}
+.prod-card-img-wrap{overflow:hidden;position:relative}
+.prod-card-badge{position:absolute;top:.75rem;left:.75rem;background:var(--dark);color:var(--gold);font-size:.66rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.3rem .65rem;border-radius:50px}
+.prod-card-body{padding:1.1rem}
+.prod-card-cat{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:.35rem}
+.prod-card-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--dark);line-height:1.35}
+.prod-card-desc{font-size:.82rem;color:var(--text-light);margin-top:.4rem;line-height:1.55;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.prod-card-footer{display:flex;align-items:center;justify-content:space-between;margin-top:1rem;padding-top:.8rem;border-top:1px solid var(--border)}
+.prod-card-price{font-size:.95rem;font-weight:800;color:var(--dark)}
+.prod-card-price small{font-size:.72rem;font-weight:500;color:var(--muted);margin-right:.15rem}
+.prod-card-link{display:inline-flex;align-items:center;gap:.3rem;font-size:.8rem;font-weight:700;color:var(--gold);transition:color .2s}
+.prod-card-link:hover{color:var(--dark)}
+.prod-card-stars{display:flex;gap:2px;margin-top:.4rem}
+.prod-card-stars span{font-size:.75rem}
+
+/* FEATURED CARDS */
+.featured-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+@media(max-width:700px){.featured-grid{grid-template-columns:1fr}}
+.featured-card{background:var(--warm-white);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;display:grid;grid-template-columns:180px 1fr;transition:var(--transition)}
+.featured-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-3px);border-color:var(--gold-pale)}
+.featured-card-img{width:180px;height:100%;min-height:180px;object-fit:cover}
+.featured-card-body{padding:1.4rem}
+.featured-card-tag{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold)}
+.featured-card-name{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--dark);margin-top:.3rem;line-height:1.35}
+.featured-card-desc{font-size:.83rem;color:var(--text-light);margin-top:.5rem;line-height:1.6}
+.featured-card-row{display:flex;align-items:center;justify-content:space-between;margin-top:1rem}
+.featured-card-price{font-weight:800;color:var(--dark)}
+.featured-card-cta{display:inline-flex;align-items:center;gap:.3rem;font-size:.82rem;font-weight:700;background:var(--gold);color:#fff;padding:.45rem 1rem;border-radius:50px;transition:var(--transition)}
+.featured-card-cta:hover{background:var(--dark)}
+@media(max-width:500px){.featured-card{grid-template-columns:1fr}.featured-card-img{width:100%;height:180px}}
+
+/* PILLS */
+.cat-pills{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2rem}
+.cat-pill{font-size:.82rem;font-weight:600;padding:.45rem 1.1rem;border-radius:50px;border:1.5px solid var(--border);color:var(--text-light);cursor:pointer;transition:var(--transition)}
+.cat-pill:hover,.cat-pill.active{background:var(--dark);color:var(--gold);border-color:var(--dark)}
+
+/* BLOG */
+#blog{background:var(--cream-2)}
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+@media(max-width:900px){.blog-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:580px){.blog-grid{grid-template-columns:1fr}}
+.blog-card{background:var(--warm-white);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;transition:var(--transition);display:flex;flex-direction:column}
+.blog-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);border-color:var(--gold-pale)}
+.blog-card-img-wrap{overflow:hidden}
+.blog-card-img{width:100%;height:210px;object-fit:cover;transition:transform .55s cubic-bezier(0.16,1,0.3,1)}
+.blog-card:hover .blog-card-img{transform:scale(1.06)}
+.blog-card-body{padding:1.3rem;display:flex;flex-direction:column;flex:1}
+.blog-card-meta{display:flex;align-items:center;gap:.6rem;margin-bottom:.7rem}
+.blog-card-cat{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold)}
+.blog-card-dot{width:3px;height:3px;background:var(--muted);border-radius:50%;display:inline-block}
+.blog-card-date{font-size:.72rem;color:var(--muted)}
+.blog-card-title{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:var(--dark);line-height:1.4}
+.blog-card-excerpt{font-size:.83rem;color:var(--text-light);line-height:1.65;margin-top:.5rem;flex:1}
+.blog-card-footer{display:flex;align-items:center;justify-content:space-between;margin-top:1.1rem;padding-top:.9rem;border-top:1px solid var(--border)}
+.blog-card-read{font-size:.8rem;font-weight:700;color:var(--gold);display:flex;align-items:center;gap:.3rem;transition:gap .2s}
+.blog-card:hover .blog-card-read{gap:.55rem}
+.blog-card-time{font-size:.72rem;color:var(--muted)}
+.blog-featured{display:grid;grid-template-columns:1fr 1.2fr;gap:0;border-radius:var(--r-lg);overflow:hidden;border:1px solid var(--border);margin-bottom:2rem;background:var(--warm-white);transition:var(--transition)}
+.blog-featured:hover{box-shadow:var(--shadow-lg)}
+.blog-featured-img{width:100%;height:100%;min-height:320px;object-fit:cover}
+.blog-featured-body{padding:2.5rem}
+.blog-featured-cat{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--gold);display:inline-flex;align-items:center;gap:.4rem}
+.blog-featured-cat::before{content:'';display:block;width:16px;height:2px;background:var(--gold)}
+.blog-featured-title{font-family:'Playfair Display',serif;font-size:clamp(1.3rem,3vw,1.8rem);color:var(--dark);margin-top:.9rem;line-height:1.3}
+.blog-featured-excerpt{font-size:.9rem;color:var(--text-light);line-height:1.7;margin-top:.9rem}
+.blog-featured-meta{display:flex;align-items:center;gap:1rem;margin-top:1.5rem;font-size:.8rem;color:var(--muted)}
+.blog-featured-link{margin-top:1.5rem;display:inline-flex;align-items:center;gap:.4rem;font-size:.9rem;font-weight:700;color:var(--dark);border-bottom:2px solid var(--gold);padding-bottom:2px;transition:var(--transition)}
+.blog-featured-link:hover{color:var(--gold)}
+@media(max-width:700px){.blog-featured{grid-template-columns:1fr}.blog-featured-img{min-height:220px}.blog-featured-body{padding:1.5rem}}
+
+/* REELS */
+#reels{background:var(--dark)}
+#reels .section-title{color:var(--cream)}
+#reels .section-subtitle{color:var(--muted)}
+#reels .label{color:var(--gold)}
+.reels-carousel{display:flex;gap:1rem;overflow-x:auto;padding-bottom:1rem;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.reels-carousel::-webkit-scrollbar{display:none}
+.reel-card{flex:0 0 220px;scroll-snap-align:start;position:relative;border-radius:var(--r);overflow:hidden;aspect-ratio:9/16;max-height:390px;cursor:pointer;transition:var(--transition)}
+.reel-card:hover{transform:scale(1.03)}
+.reel-card img{width:100%;height:100%;object-fit:cover}
+.reel-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(31,27,22,.88) 0%,rgba(31,27,22,0) 55%)}
+.reel-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:48px;height:48px;background:rgba(185,130,66,.85);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:var(--transition);backdrop-filter:blur(4px)}
+.reel-card:hover .reel-play{background:var(--gold);transform:translate(-50%,-50%) scale(1.12)}
+.reel-play svg{width:18px;height:18px;fill:#fff;margin-left:3px}
+.reel-info{position:absolute;bottom:0;left:0;right:0;padding:1rem}
+.reel-title{font-size:.85rem;font-weight:700;color:#fff;line-height:1.35}
+.reel-views{font-size:.72rem;color:rgba(255,255,255,.6);margin-top:.25rem;display:flex;align-items:center;gap:.3rem}
+.reel-platform{position:absolute;top:.75rem;right:.75rem;width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.15);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center}
+.reel-platform svg{width:14px;height:14px}
+#reels .carousel-btn{border-color:rgba(185,130,66,.3);background:rgba(185,130,66,.08);color:var(--gold)}
+#reels .carousel-btn:hover{background:var(--gold);border-color:var(--gold);color:#fff}
+.reel-video-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:200;align-items:center;justify-content:center;padding:1rem}
+.reel-video-modal.open{display:flex}
+.reel-video-inner{position:relative;width:100%;max-width:420px;aspect-ratio:9/16;max-height:85svh;border-radius:var(--r-lg);overflow:hidden;background:#000}
+.reel-video-inner iframe{width:100%;height:100%;border:none}
+.reel-close{position:absolute;top:-44px;right:0;color:#fff;font-size:1.5rem;padding:.5rem;cursor:pointer;transition:color .2s}
+.reel-close:hover{color:var(--gold)}
+
+/* BEFORE/AFTER */
+#transform{background:var(--dark-2)}
+#transform .section-title{color:var(--cream)}
+#transform .label{color:var(--gold)}
+.ba-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+@media(max-width:800px){.ba-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:500px){.ba-grid{grid-template-columns:1fr}}
+.ba-card{border-radius:var(--r);overflow:hidden;position:relative;background:var(--dark-3);border:1px solid rgba(185,130,66,.12)}
+.ba-images{position:relative;height:260px}
+.ba-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .4s ease}
+.ba-img.hidden{opacity:0}
+.ba-toggle-row{display:flex;border-top:1px solid rgba(185,130,66,.15)}
+.ba-btn{flex:1;padding:.7rem;font-size:.78rem;font-weight:700;transition:var(--transition);color:var(--muted)}
+.ba-btn.active{background:var(--gold);color:#fff}
+.ba-label{position:absolute;bottom:.75rem;left:.75rem;font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;background:rgba(31,27,22,.75);color:#fff;padding:.25rem .6rem;border-radius:50px;backdrop-filter:blur(4px)}
+.ba-caption{padding:.9rem 1.1rem}
+.ba-caption h4{font-family:'Playfair Display',serif;font-size:.95rem;color:var(--cream);line-height:1.35}
+.ba-caption p{font-size:.78rem;color:var(--muted);margin-top:.3rem}
+
+/* NEWSLETTER */
+#newsletter{background:var(--cream)}
+.nl-box{background:var(--dark);border-radius:var(--r-lg);padding:3.5rem;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;position:relative;overflow:hidden}
+.nl-blob{position:absolute;width:300px;height:300px;background:rgba(185,130,66,.12);border-radius:50%;filter:blur(60px);right:-60px;top:-60px;pointer-events:none;animation:pulse 8s ease-in-out infinite}
+.nl-label{font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.nl-title{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,3vw,2rem);color:var(--cream);margin-top:.6rem;line-height:1.3}
+.nl-sub{font-size:.9rem;color:var(--muted);margin-top:.8rem;line-height:1.6}
+.nl-perks{margin-top:1.2rem;display:flex;flex-direction:column;gap:.5rem}
+.nl-perk{display:flex;align-items:center;gap:.6rem;font-size:.82rem;color:var(--muted-2)}
+.nl-perk::before{content:'✦';color:var(--gold);font-size:.6rem}
+.nl-form{display:flex;flex-direction:column;gap:1rem;position:relative;z-index:1}
+.nl-input{width:100%;padding:.9rem 1.2rem;border-radius:var(--r-sm);border:1.5px solid rgba(185,130,66,.2);background:rgba(255,255,255,.05);color:var(--cream);font-family:inherit;font-size:.9rem;outline:none;transition:border-color .2s}
+.nl-input:focus{border-color:var(--gold)}
+.nl-input::placeholder{color:rgba(255,255,255,.3)}
+.nl-submit{width:100%;background:var(--gold);color:#fff;font-weight:700;font-size:.95rem;padding:.9rem;border-radius:var(--r-sm);transition:var(--transition)}
+.nl-submit:hover{background:var(--gold-light);transform:translateY(-1px)}
+.nl-privacy{font-size:.72rem;color:rgba(255,255,255,.25);text-align:center}
+@media(max-width:700px){.nl-box{grid-template-columns:1fr;padding:2rem}}
+
+.ig-strip{background:var(--gold);padding:2.5rem 0;text-align:center}
+.ig-strip h3{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--dark)}
+.ig-strip p{font-size:.9rem;color:rgba(31,27,22,.7);margin-top:.4rem}
+.ig-btn{display:inline-flex;align-items:center;gap:.5rem;background:var(--dark);color:var(--gold);font-weight:700;font-size:.9rem;padding:.75rem 1.8rem;border-radius:50px;margin-top:1.2rem;transition:var(--transition)}
+.ig-btn:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(31,27,22,.3)}
+
+footer{background:var(--dark);color:var(--muted);padding:4rem 0 2rem}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:3rem}
+@media(max-width:700px){.footer-grid{grid-template-columns:1fr;gap:2rem}}
+.footer-brand-name{font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--cream);font-weight:900}
+.footer-brand-name span{color:var(--gold)}
+.footer-tagline{font-size:.83rem;line-height:1.6;margin-top:.5rem;max-width:280px}
+.footer-socials{display:flex;gap:.75rem;margin-top:1.2rem}
+.footer-social{width:36px;height:36px;border-radius:50%;border:1px solid rgba(185,130,66,.2);display:flex;align-items:center;justify-content:center;color:var(--muted);transition:var(--transition)}
+.footer-social:hover{border-color:var(--gold);color:var(--gold)}
+.footer-social svg{width:16px;height:16px}
+.footer-col-title{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--gold);margin-bottom:1rem}
+.footer-links{display:flex;flex-direction:column;gap:.6rem}
+.footer-links a{font-size:.85rem;color:var(--muted);transition:color .2s}
+.footer-links a:hover{color:var(--cream)}
+.footer-bottom{border-top:1px solid rgba(185,130,66,.1);margin-top:3rem;padding-top:1.5rem;display:flex;flex-wrap:wrap;gap:.75rem;justify-content:space-between;font-size:.75rem;color:rgba(154,128,112,.6)}
+.footer-disc{font-size:.72rem;color:rgba(154,128,112,.5);margin-top:1.2rem;line-height:1.6;padding-top:1rem;border-top:1px solid rgba(185,130,66,.08)}
+
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:300;align-items:center;justify-content:center;padding:1rem;backdrop-filter:blur(4px)}
+.modal-bg.open{display:flex}
+.modal-box{background:var(--warm-white);border-radius:var(--r-lg);max-width:460px;width:100%;padding:2.5rem;position:relative;animation:modalIn .4s cubic-bezier(0.16,1,0.3,1) both}
+.modal-close{position:absolute;top:1.2rem;right:1.2rem;color:var(--muted);font-size:1.2rem;padding:.3rem;transition:color .2s;line-height:1}
+.modal-close:hover{color:var(--dark)}
+.modal-label{font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.modal-title{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--dark);margin-top:.4rem;line-height:1.3}
+.modal-sub{font-size:.85rem;color:var(--text-light);margin-top:.5rem;line-height:1.6}
+.modal-input{width:100%;margin-top:1.2rem;padding:.85rem 1.1rem;border-radius:var(--r-sm);border:1.5px solid var(--border);font-family:inherit;font-size:.9rem;outline:none;transition:border-color .2s}
+.modal-input:focus{border-color:var(--gold)}
+.modal-submit{width:100%;margin-top:.75rem;background:var(--dark);color:var(--gold);font-weight:700;font-size:.95rem;padding:.9rem;border-radius:var(--r-sm);transition:var(--transition)}
+.modal-submit:hover{background:var(--gold);color:#fff}
+.modal-skip{display:block;text-align:center;font-size:.75rem;color:var(--muted);margin-top:.75rem;cursor:pointer;transition:color .2s}
+.modal-skip:hover{color:var(--dark)}
+
+.mobile-bar{display:none;position:fixed;bottom:0;inset-x:0;z-index:90;background:var(--dark);border-top:1px solid rgba(185,130,66,.2);padding:.75rem 1.25rem;gap:.75rem}
+@media(max-width:768px){.mobile-bar{display:flex;padding-bottom:calc(.75rem + env(safe-area-inset-bottom))}}
+.mobile-bar-btn{flex:1;padding:.7rem;border-radius:var(--r-sm);font-size:.85rem;font-weight:700;text-align:center;transition:var(--transition)}
+.mobile-bar-btn.primary{background:var(--gold);color:#fff}
+.mobile-bar-btn.outline{border:1.5px solid rgba(185,130,66,.35);color:var(--gold)}
+@media(max-width:768px){body{padding-bottom:70px}}
+
+/* SVG ICON HELPERS */
+.icon-arr{display:inline-block;width:14px;height:14px;vertical-align:middle}
+.icon-arr-sm{display:inline-block;width:12px;height:12px;vertical-align:middle}
+</style>
 </head>
 <body>
-  <!-- NAV -->
-  <nav>
-    <a href="#hero" class="nav-logo">Double <span>Barrel</span></a>
-    <ul class="nav-links">
-      <li><a href="#story">Our Story</a></li>
-      <li><a href="#products">Menu</a></li>
-      <li><a href="#process">Process</a></li>
-      <li><a href="#order" class="nav-cta">Order Now</a></li>
-    </ul>
-  </nav>
-  <!-- HERO -->
-  <section id="hero">
-    <div class="hero-smoke"></div>
-    <div>
-      <div class="hero-badge">Premium Smoked Meats · Philippines</div>
-      <h1 class="hero-title">
-        Slow Fire.<br /><em>Bold</em> Flavour.<br />No Shortcuts.
-      </h1>
-      <p class="hero-sub">
-        Handcrafted smoked meats for those who know the difference between fast food and real barbecue.
-        Double Barrel PH — where patience meets fire.
-      </p>
-      <div class="hero-actions">
-        <a href="#order" class="btn-primary">Order Now</a>
-        <a href="#products" class="btn-ghost">See the Menu</a>
-      </div>
-      <div class="hero-scroll">Scroll to explore</div>
-    </div>
-  </section>
-  <!-- STORY -->
-  <section id="story">
-    <div class="story-visual fade-in">
-      <div class="story-card story-card-main"></div>
-      <div class="story-card story-card-accent"></div>
-      <div class="story-stat">
-        <strong>12+</strong>
-        <span>Hours Smoked</span>
-      </div>
-    </div>
-    <div class="story-text fade-in">
-      <p class="section-label">Our Story</p>
-      <h2 class="section-title">Born from the <em>Barrel,</em> Built for the Table.</h2>
-      <div class="divider"></div>
-      <p>
-        Double Barrel PH started with one obsession: what happens when you give smoked meat the time it deserves?
-        No shortcuts, no sauce to mask it. Just hardwood, heat, and hours of commitment.
-      </p>
-      <p>
-        We craft every rack and every belly slab with the same principle — if you wouldn't be proud to serve it
-        at your table, it doesn't leave ours. Premium quality, unapologetically bold, made for Filipinos
-        who know real barbecue.
-      </p>
-      <p>
-        This is not fast food. This is the real deal.
-      </p>
-      <div class="story-pillars">
-        <div class="pillar">
-          <strong>Slow</strong>
-          <span>12–16 hr smoke</span>
-        </div>
-        <div class="pillar">
-          <strong>Bold</strong>
-          <span>No fillers, no fluff</span>
-        </div>
-        <div class="pillar">
-          <strong>Premium</strong>
-          <span>Handpicked cuts only</span>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- PRODUCTS -->
-  <section id="products">
-    <div class="products-header fade-in">
-      <p class="section-label">The Menu</p>
-      <h2 class="section-title">Two Cuts. <em>Infinite</em> Satisfaction.</h2>
-      <div class="divider" style="margin: 0 auto;"></div>
-    </div>
-    <div class="products-grid fade-in">
-      <!-- Beef Belly -->
-      <div class="product-card">
-        <div class="product-bg product-bg-beef">
-          <div class="product-content">
-            <p class="product-tag">Signature Cut</p>
-            <h3 class="product-name">Smoked<br />Beef Belly</h3>
-            <p class="product-desc">
-              Marbled, rich, and impossibly tender. Our beef belly spends over 12 hours in the smoke,
-              building a bark so deep it cracks when you slice it. This is brisket culture, Filipino style.
-            </p>
-            <div class="product-details">
-              <div class="product-detail">
-                <span>Cook Time</span>
-                <span>12–14 hrs</span>
-              </div>
-              <div class="product-detail">
-                <span>Wood</span>
-                <span>Hardwood</span>
-              </div>
-              <div class="product-detail">
-                <span>Serves</span>
-                <span>2–4 pax</span>
-              </div>
-            </div>
-            <a href="#order" class="product-btn">Order This Cut →</a>
-          </div>
-        </div>
-      </div>
-      <!-- Pork Ribs -->
-      <div class="product-card">
-        <div class="product-bg product-bg-ribs">
-          <div class="product-content">
-            <p class="product-tag">Fan Favourite</p>
-            <h3 class="product-name">Smoked<br />Pork Ribs</h3>
-            <p class="product-desc">
-              Fall-off-the-bone tender, with a smoke ring that tells the whole story. Our pork ribs are
-              seasoned with a dry rub and left to the fire — no sauce needed. Pure, honest, unforgettable.
-            </p>
-            <div class="product-details">
-              <div class="product-detail">
-                <span>Cook Time</span>
-                <span>10–12 hrs</span>
-              </div>
-              <div class="product-detail">
-                <span>Style</span>
-                <span>Dry Rub</span>
-              </div>
-              <div class="product-detail">
-                <span>Serves</span>
-                <span>3–5 pax</span>
-              </div>
-            </div>
-            <a href="#order" class="product-btn">Order This Cut →</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- PROCESS -->
-  <section id="process">
-    <p class="section-label fade-in">The Double Barrel Way</p>
-    <h2 class="section-title fade-in">From Fire to <em>Your</em> Door</h2>
-    <div class="process-steps">
-      <div class="process-step fade-in">
-        <div class="step-icon">🥩</div>
-        <div class="step-num">Step 01</div>
-        <div class="step-title">Select the Cut</div>
-        <p class="step-desc">We source only premium, handpicked cuts. Marbling matters. Quality is non-negotiable.</p>
-      </div>
-      <div class="process-step fade-in">
-        <div class="step-icon">🧂</div>
-        <div class="step-num">Step 02</div>
-        <div class="step-title">Dry Rub &amp; Rest</div>
-        <p class="step-desc">A proprietary dry rub is applied and the meat rests overnight. Patience is the first ingredient.</p>
-      </div>
-      <div class="process-step fade-in">
-        <div class="step-icon">🔥</div>
-        <div class="step-num">Step 03</div>
-        <div class="step-title">Low &amp; Slow Fire</div>
-        <p class="step-desc">12+ hours in the barrel at controlled heat. This is where the magic — and the smoke ring — happens.</p>
-      </div>
-      <div class="process-step fade-in">
-        <div class="step-icon">🛵</div>
-        <div class="step-num">Step 04</div>
-        <div class="step-title">Delivered to You</div>
-        <p class="step-desc">Via Lalamove, your order arrives hot, packed properly, and ready to impress your table.</p>
-      </div>
-    </div>
-  </section>
-  <!-- ORDER -->
-  <section id="order">
-    <div class="order-inner">
-      <div class="order-info fade-in">
-        <p class="section-label">Place an Order</p>
-        <h2 class="section-title" style="font-size:2.2rem;">Ready to <em>Experience</em> It?</h2>
-        <div class="divider"></div>
-        <p>
-          Orders are pre-arranged to ensure every cut receives the time it deserves.
-          We don't rush perfection — so plan ahead and your table will thank you.
-        </p>
-        <p>
-          Fill in the form and we'll confirm your order and schedule delivery via
-          <strong style="color:var(--amber)">Lalamove</strong> straight to your door.
-        </p>
-        <div class="delivery-badge">
-          🛵 &nbsp; Delivered via <strong>&nbsp;Lalamove</strong>
-        </div>
-        <div class="payment-methods">
-          <span class="pay-tag">GCash</span>
-          <span class="pay-tag">Maya</span>
-          <span class="pay-tag">Bank Transfer</span>
-          <span class="pay-tag">Credit Card</span>
-          <span class="pay-tag">Cash on Delivery</span>
-        </div>
-      </div>
-      <form class="order-form fade-in" name="order" method="POST" id="orderForm">
-        <div class="form-group">
-          <label>Full Name</label>
-          <input id="f-name" name="name" type="text" placeholder="Juan dela Cruz" />
-        </div>
-        <div class="form-group">
-          <label>Contact Number</label>
-          <input id="f-phone" name="phone" type="tel" placeholder="+63 9XX XXX XXXX" />
-        </div>
-        <div class="form-group">
-          <label>Email Address</label>
-          <input id="f-email" name="email_address" type="email" placeholder="you@email.com" />
-        </div>
-        <div class="form-group">
-          <label>Delivery Address</label>
-          <input id="f-address" name="address" type="text" placeholder="Enter your delivery address…" autocomplete="off" />
-        </div>
-        <div class="form-group">
-          <label>Your Order</label>
-          <div class="order-items">
-            <div class="order-item">
-              <div class="order-item-info">
-                <span class="order-item-name">🥩 Smoked Beef Belly</span>
-                <span class="order-item-price">₱1,200 / order</span>
-              </div>
-              <div class="order-item-qty">
-                <button type="button" class="qty-btn" onclick="changeQty('beef', -1)">−</button>
-                <span class="qty-display" id="qty-beef">0</span>
-                <button type="button" class="qty-btn" onclick="changeQty('beef', 1)">+</button>
-              </div>
-            </div>
-            <div class="order-item">
-              <div class="order-item-info">
-                <span class="order-item-name">🍖 Smoked Pork Ribs</span>
-                <span class="order-item-price">₱950 / order</span>
-              </div>
-              <div class="order-item-qty">
-                <button type="button" class="qty-btn" onclick="changeQty('ribs', -1)">−</button>
-                <span class="qty-display" id="qty-ribs">0</span>
-                <button type="button" class="qty-btn" onclick="changeQty('ribs', 1)">+</button>
-              </div>
-            </div>
-          </div>
-          <input type="hidden" id="f-product" name="product" />
-          <div class="order-total" id="orderTotal" style="display:none;">
-            <span class="order-total-label">Order Total</span>
-            <span class="order-total-amount" id="totalAmount">₱0</span>
-          </div>
-          <input type="hidden" id="f-total" name="total_price" />
-        </div>
-        <div class="form-group">
-          <label>Preferred Pickup / Delivery Date</label>
-          <input id="f-date" name="date" type="date" min="2026-01-01" placeholder="YYYY-MM-DD" />
-        </div>
-        <div class="form-group">
-          <label>Special Requests (optional)</label>
-          <textarea id="f-notes" name="notes" placeholder="Any special instructions, serving size, or occasion details…"></textarea>
-        </div>
-        <button class="btn-primary" id="submitBtn" type="button" onclick="submitOrder()">Submit Order</button>
-        <p class="order-note" id="formMsg"></p>
-        <p class="order-note">* Orders placed here go directly to our team. We will contact you within 24 hours to confirm and collect payment.</p>
-      </form>
-    </div>
-  </section>
-  <!-- NARRATIVE -->
-  <section id="narrative">
-    <p class="section-label fade-in">The Double Barrel Manifesto</p>
-    <blockquote class="pull-quote fade-in">
-      "Real barbecue doesn't ask for attention. <span>It commands it.</span>"
-    </blockquote>
-    <p class="narrative-body fade-in">
-      There's a moment — right when you slice through a properly smoked piece of meat —
-      where time stops. The bark gives way. The smoke ring reveals itself. The juices run slow.
-      That moment? That's what we build toward. Every. Single. Time.
-      <br /><br />
-      Double Barrel PH isn't just food. It's the centerpiece of every celebration,
-      every gathering, every moment worth remembering. We smoke slow so you can celebrate loud.
-    </p>
-    <div class="social-row fade-in">
-      <a href="https://www.instagram.com/doublebarrelph" target="_blank" class="social-btn">
-        📸 &nbsp; @doublebarrelph
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+          <circle cx="18" cy="18" r="17" fill="#1F1B16"/>
+          <circle cx="18" cy="18" r="15.5" fill="none" stroke="#B98242" stroke-width="1.3"/>
+          <polygon points="10,19.5 18,12 26,19.5" fill="#B98242"/>
+          <rect x="11.5" y="19.5" width="13" height="7" fill="#B98242"/>
+          <rect x="12" y="21" width="5" height="4" rx="0.5" fill="#1F1B16"/>
+          <line x1="14.5" y1="21" x2="14.5" y2="25" stroke="#B98242" stroke-width="1.2"/>
+          <line x1="12" y1="23" x2="17" y2="23" stroke="#B98242" stroke-width="1.2"/>
+          <rect x="19.5" y="20.5" width="4" height="6" rx="0.5" fill="#1F1B16"/>
+        </svg>
+        <span class="nav-logo-text">Make It Better <span>PH</span></span>
       </a>
-      <a href="#order" class="social-btn">
-        🛒 &nbsp; Order Now
-      </a>
-    </div>
-  </section>
-  <!-- VALUES -->
-  <div id="values">
-    <div class="value-card fade-in">
-      <div class="value-icon">🔥</div>
-      <div class="value-title">Real Fire Only</div>
-      <p class="value-desc">No gas shortcuts, no half-measures. Every order is cooked over real hardwood for genuine smoke flavour you can taste in every bite.</p>
-    </div>
-    <div class="value-card fade-in">
-      <div class="value-icon">⏱</div>
-      <div class="value-title">Time is the Ingredient</div>
-      <p class="value-desc">We don't rush. The best smoked meat demands patience. Our minimum smoke time is 10 hours — because quality can't be fast-tracked.</p>
-    </div>
-    <div class="value-card fade-in">
-      <div class="value-icon">🏆</div>
-      <div class="value-title">Premium, Always</div>
-      <p class="value-desc">From cut selection to plating, we operate at a premium level. Middle to upper-class taste, Filipino soul. No exceptions.</p>
+      <ul class="nav-links">
+        <li><a href="#products">Products</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#reels">Reels</a></li>
+        <li><a href="#transform">Before &amp; After</a></li>
+        <li><a id="navIG" href="#" target="_blank" rel="noopener noreferrer" class="nav-cta">Follow on IG →</a></li>
+      </ul>
+      <button class="nav-burger" id="burger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </div>
-  <!-- CONTACT -->
-  <section id="contact">
-    <div class="contact-text fade-in">
-      <p class="section-label">Get in Touch</p>
-      <h2 class="section-title">Let's Talk <em>Meat.</em></h2>
-      <div class="divider"></div>
-      <p>
-        Whether you're planning a celebration, a corporate event, or you simply want to know
-        more about our products — we'd love to hear from you.
-      </p>
-      <ul class="contact-list">
-        <li>
-          <span>📸</span>
-          <span><a href="https://www.instagram.com/doublebarrelph" target="_blank" style="color:var(--amber);text-decoration:none;">@doublebarrelph</a> on Instagram</span>
-        </li>
-        <li>
-          <span>📦</span>
-          <span>Orders delivered via Lalamove</span>
-        </li>
-        <li>
-          <span>📅</span>
-          <span>Pre-order required · 24-hr lead time</span>
-        </li>
-        <li>
-          <span>🇵🇭</span>
-          <span>Proudly Filipino · Premium Smoked Meats</span>
-        </li>
-      </ul>
-    </div>
-    <div class="contact-visual fade-in">
-      <div class="brand-monogram">DB</div>
-      <div class="brand-tagline">Double Barrel PH</div>
-      <div class="brand-divider"></div>
-      <div class="brand-creds">
-        Premium Smoked Meats<br />
-        Slow Fire · Bold Flavour · No Shortcuts<br /><br />
-        <span style="color:var(--amber)">Smoked Beef Belly · Smoked Pork Ribs</span>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" id="mobileClose">✕</button>
+  <a href="#products" class="mobile-link">Products</a>
+  <a href="#blog" class="mobile-link">Blog</a>
+  <a href="#reels" class="mobile-link">Reels</a>
+  <a href="#transform" class="mobile-link">Before &amp; After</a>
+  <a id="mobileIG" href="#" target="_blank" rel="noopener noreferrer" style="color:var(--gold)">Instagram →</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-blob hero-blob-1"></div>
+  <div class="hero-blob hero-blob-2"></div>
+  <div class="container" style="width:100%">
+    <div class="hero-grid">
+      <div class="hero-content">
+        <div class="hero-badge"><div class="hero-badge-dot"></div><span>Filipino Budget Room Upgrades</span></div>
+        <h1 class="hero-h1">Affordable finds.<br/><em>Better-looking</em> rooms.</h1>
+        <p class="hero-sub">Real reviews, budget picks, and room inspo — everything you need to upgrade your space without breaking the bank.</p>
+        <div class="hero-actions">
+          <a href="#products" class="btn-primary">Browse Products <svg class="icon-arr" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="#blog" class="btn-outline">Read the Blog</a>
+        </div>
+        <div class="hero-stats" id="heroStats"></div>
       </div>
-      <br />
-      <a href="#order" class="btn-primary" style="display:inline-block;margin-top:0.5rem;">Order Now</a>
+      <div class="hero-image-col" id="heroCard"></div>
     </div>
-  </section>
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-logo">Double <span>Barrel</span> PH</div>
-    <ul class="footer-links">
-      <li><a href="#story">Story</a></li>
-      <li><a href="#products">Menu</a></li>
-      <li><a href="#process">Process</a></li>
-      <li><a href="#order">Order</a></li>
-      <li><a href="https://www.instagram.com/doublebarrelph" target="_blank">Instagram</a></li>
-    </ul>
-    <p class="footer-copy">© 2024 Double Barrel PH · Premium Smoked Meats</p>
-  </footer>
+  </div>
+</section>
 
-  <script>
-    // ── Fade-in on scroll ──────────────────────────────────────────────
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) e.target.classList.add('visible');
-      });
-    }, { threshold: 0.12 });
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+<!-- TICKER -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track" id="tickerTrack"></div>
+</div>
 
-    // ── Product quantities & pricing ──────────────────────────────────
-    const PRICES = { beef: 1200, ribs: 950 };
-    const qty    = { beef: 0, ribs: 0 };
+<!-- PRODUCTS -->
+<section class="section" id="products">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-header-row">
+        <div>
+          <div class="label">Affiliate Finds</div>
+          <h2 class="section-title">Products I Actually Use</h2>
+          <span class="gold-line"></span>
+        </div>
+        <a href="#" class="view-all">View All <svg class="icon-arr" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      <p class="section-subtitle" style="margin-top:.8rem">Every item is something I've personally tested or bought. Links help support the channel.</p>
+    </div>
+    <div class="cat-pills reveal reveal-delay-1" id="catPills"></div>
+    <div class="featured-grid reveal reveal-delay-2" id="featuredGrid" style="margin-bottom:1.5rem"></div>
+    <div class="carousel-wrap reveal reveal-delay-3">
+      <div class="carousel" id="prodCarousel"></div>
+      <div class="carousel-nav">
+        <button class="carousel-btn" id="prodPrev"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>
+        <button class="carousel-btn" id="prodNext"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+      </div>
+    </div>
+  </div>
+</section>
 
-    function changeQty(item, delta) {
-      qty[item] = Math.max(0, qty[item] + delta);
-      document.getElementById('qty-' + item).textContent = qty[item];
-      updateTotal();
-    }
+<!-- BLOG -->
+<section class="section" id="blog">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-header-row">
+        <div>
+          <div class="label">Content</div>
+          <h2 class="section-title">From the Blog</h2>
+          <span class="gold-line"></span>
+        </div>
+        <a href="#" class="view-all">All Posts <svg class="icon-arr" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      <p class="section-subtitle" style="margin-top:.8rem">Room inspo, product deep-dives, and honest budget breakdowns. No fluff — just real talk.</p>
+    </div>
+    <div id="blogFeatured" class="reveal reveal-delay-1"></div>
+    <div class="blog-grid" id="blogGrid"></div>
+  </div>
+</section>
 
-    function updateTotal() {
-      const total = qty.beef * PRICES.beef + qty.ribs * PRICES.ribs;
-      const totalEl = document.getElementById('orderTotal');
-      const amountEl = document.getElementById('totalAmount');
-      if (total > 0) {
-        totalEl.style.display = 'flex';
-        amountEl.textContent = '₱' + total.toLocaleString();
-      } else {
-        totalEl.style.display = 'none';
-      }
-      const parts = [];
-      if (qty.beef > 0) parts.push(`Smoked Beef Belly x${qty.beef} (₱${(qty.beef * PRICES.beef).toLocaleString()})`);
-      if (qty.ribs > 0) parts.push(`Smoked Pork Ribs x${qty.ribs} (₱${(qty.ribs * PRICES.ribs).toLocaleString()})`);
-      document.getElementById('f-product').value = parts.join(', ');
-      document.getElementById('f-total').value   = total > 0 ? total : '';
-    }
+<!-- REELS -->
+<section class="section" id="reels">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-header-row">
+        <div>
+          <div class="label">Short Videos</div>
+          <h2 class="section-title">Latest Reels</h2>
+          <span class="gold-line"></span>
+        </div>
+        <a id="reelIGLink" href="#" target="_blank" rel="noopener noreferrer" class="view-all" style="color:var(--gold)">Follow on IG <svg class="icon-arr" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      <p class="section-subtitle" style="margin-top:.8rem">Quick room tours, product demos, and budget hacks — all in under 60 seconds.</p>
+    </div>
+    <div class="carousel-wrap reveal reveal-delay-1">
+      <div class="reels-carousel" id="reelsCarousel"></div>
+      <div class="carousel-nav">
+        <button class="carousel-btn" id="reelPrev"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button>
+        <button class="carousel-btn" id="reelNext"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+      </div>
+    </div>
+  </div>
+</section>
 
-    // ── Submit order → n8n webhook ────────────────────────────────────
-    async function submitOrder() {
-      const name          = document.getElementById('f-name').value.trim();
-      const phone         = document.getElementById('f-phone').value.trim();
-      const email_address = document.getElementById('f-email').value.trim();
-      const address       = document.getElementById('f-address').value.trim();
-      const product       = document.getElementById('f-product').value;
-      const total_price   = document.getElementById('f-total').value;
-      const date          = document.getElementById('f-date').value;
-      const notes         = document.getElementById('f-notes').value.trim();
-      const msg           = document.getElementById('formMsg');
-      const btn           = document.getElementById('submitBtn');
+<!-- REEL MODAL -->
+<div class="reel-video-modal" id="reelModal">
+  <div class="reel-video-inner">
+    <button class="reel-close" id="reelClose">✕</button>
+    <iframe id="reelIframe" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+  </div>
+</div>
 
-      const missing = [];
-      if (!name)          missing.push('Full Name');
-      if (!phone)         missing.push('Contact Number');
-      if (!email_address) missing.push('Email Address');
-      if (!address)       missing.push('Delivery Address');
-      if (!product)       missing.push('Product (select at least one item)');
-      if (!date)          missing.push('Delivery Date');
+<!-- BEFORE & AFTER -->
+<section class="section" id="transform">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="label">Transformations</div>
+      <h2 class="section-title">Before &amp; After</h2>
+      <span class="gold-line"></span>
+      <p class="section-subtitle" style="margin-top:.8rem">Real rooms, real budgets. Toggle to see the full transformation.</p>
+    </div>
+    <div class="ba-grid" id="baGrid"></div>
+  </div>
+</section>
 
-      if (missing.length > 0) {
-        msg.style.color = '#e05a2b';
-        msg.textContent = '⚠ Please fill in: ' + missing.join(', ');
-        return;
-      }
+<!-- IG STRIP -->
+<div class="ig-strip">
+  <div class="container">
+    <h3>See the latest finds on Instagram</h3>
+    <p>Daily room inspo, product links, and community picks</p>
+    <a id="igStripBtn" href="#" target="_blank" rel="noopener noreferrer" class="ig-btn">
+      <svg style="width:18px;height:18px;fill:currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      <span id="igStripHandle">Follow @makeitbetterph</span>
+    </a>
+  </div>
+</div>
 
-      btn.disabled = true;
-      btn.textContent = 'Sending…';
-      msg.style.color = '#888';
-      msg.textContent = '';
+<!-- NEWSLETTER -->
+<section class="section" id="newsletter">
+  <div class="container">
+    <div class="nl-box reveal">
+      <div class="nl-blob"></div>
+      <div style="position:relative;z-index:1">
+        <div class="nl-label">Newsletter</div>
+        <h2 class="nl-title">Get the best finds delivered to your inbox</h2>
+        <p class="nl-sub">New product drops, exclusive budget picks, and room inspo every week. No spam, ever.</p>
+        <div class="nl-perks">
+          <span class="nl-perk">Weekly budget finds under ₱1,000</span>
+          <span class="nl-perk">Exclusive discount codes from local sellers</span>
+          <span class="nl-perk">Room makeover ideas with full shopping lists</span>
+        </div>
+      </div>
+      <form class="nl-form" onsubmit="return handleNL(event)">
+        <input class="nl-input" type="text" placeholder="Your first name" required/>
+        <input class="nl-input" type="email" placeholder="Your email address" required/>
+        <button class="nl-submit" type="submit">Subscribe — It's Free</button>
+        <p class="nl-privacy">No spam. Unsubscribe anytime.</p>
+      </form>
+    </div>
+  </div>
+</section>
 
-      try {
-        await fetch('https://arjayatentar.app.n8n.cloud/webhook/order', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            name, phone, email_address, address, product, total_price, date, notes,
-            submitted_at: new Date().toISOString(),
-            source: 'Double Barrel PH Website'
-          })
-        });
-      } catch(e) { /* CORS blocks reading response but data was sent */ }
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-name">Make It Better <span>PH</span></div>
+        <p class="footer-tagline">Helping Filipinos build better-looking rooms on a budget. Real reviews, honest picks, real results.</p>
+        <div class="footer-socials" id="footerSocials"></div>
+      </div>
+      <div>
+        <div class="footer-col-title">Explore</div>
+        <ul class="footer-links">
+          <li><a href="#products">Products</a></li>
+          <li><a href="#blog">Blog Posts</a></li>
+          <li><a href="#reels">Reels</a></li>
+          <li><a href="#transform">Before &amp; After</a></li>
+          <li><a href="#newsletter">Newsletter</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Categories</div>
+        <ul class="footer-links" id="footerCats"></ul>
+      </div>
+    </div>
+    <p class="footer-disc"><strong style="color:rgba(154,128,112,.7)">Affiliate Disclosure:</strong> Some links on this site are affiliate links. If you click and buy, I may earn a small commission at no extra cost to you. I only recommend products I've personally used or carefully researched. Thank you for supporting Make It Better PH!</p>
+    <div class="footer-bottom">
+      <span>© 2025 Make It Better PH. All rights reserved.</span>
+      <span>Affordable finds. Better-looking rooms.</span>
+    </div>
+  </div>
+</footer>
 
-      msg.style.color = '#c8722a';
-      msg.textContent = '🔥 Order received! We\'ll reach out within 24 hours to confirm.';
-      btn.textContent = 'Order Sent ✓';
+<!-- NEWSLETTER MODAL -->
+<div class="modal-bg" id="modalBg">
+  <div class="modal-box">
+    <button class="modal-close" id="modalClose">✕</button>
+    <div class="modal-label">Free Newsletter</div>
+    <h2 class="modal-title">Don't miss the best budget finds!</h2>
+    <p class="modal-sub">Join the community getting weekly room upgrade ideas and exclusive affiliate deals.</p>
+    <form onsubmit="return handleModal(event)">
+      <input class="modal-input" type="email" placeholder="Your email address" required/>
+      <button class="modal-submit" type="submit">Yes, I want the deals!</button>
+    </form>
+    <span class="modal-skip" id="modalSkip">No thanks, I'll pass for now</span>
+  </div>
+</div>
 
-      ['f-name','f-phone','f-email','f-address','f-notes'].forEach(id => document.getElementById(id).value = '');
-      document.getElementById('f-date').value = '';
-      qty.beef = 0; qty.ribs = 0;
-      document.getElementById('qty-beef').textContent = '0';
-      document.getElementById('qty-ribs').textContent = '0';
-      updateTotal();
-    }
-  </script>
+<!-- MOBILE CTA -->
+<div class="mobile-bar">
+  <a id="mobileBarIG" href="#" target="_blank" rel="noopener noreferrer" class="mobile-bar-btn outline">Instagram</a>
+  <a href="#products" class="mobile-bar-btn primary">See Products →</a>
+</div>
+
+<script>
+/* ═══════════════════════════════════════════════════════════
+   ✏️  EDIT YOUR CONTENT HERE — this is the only section
+       you need to touch to update the website.
+   ═══════════════════════════════════════════════════════════ */
+
+const SITE = {
+
+  /* ── 1. YOUR SOCIAL LINKS ──────────────────────────────── */
+  instagram: 'https://www.instagram.com/makeitbetterph',  // ← change to your real IG link
+  tiktok:    'https://www.tiktok.com/@makeitbetterph',    // ← change to your TikTok link
+  facebook:  'https://www.facebook.com/makeitbetterph',   // ← change to your Facebook link
+
+  /* ── 2. HERO STATS ─────────────────────────────────────── */
+  stats: [
+    { count: 48,   suffix: '',  label: 'Products Reviewed' },
+    { count: 12,   suffix: '',  label: 'Room Makeovers'    },
+    { count: 6200, suffix: '+', label: 'Community Members' },
+  ],
+
+  /* ── 3. HERO FEATURED CARD (top right on desktop) ──────── */
+  heroCard: {
+    image:    'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=680&q=80',
+    tag:      'Living Room · Under ₱2,000',
+    name:     'Foam Sofa Set with Wooden Legs',
+    price:    '₱1,799',
+    link:     '#',  // ← your affiliate link
+  },
+
+  /* ── 4. TICKER TAPE LABELS ─────────────────────────────── */
+  ticker: [
+    'Under ₱500 Finds',
+    'Living Room Upgrades',
+    'Budget Bedroom Setup',
+    'Study Table Essentials',
+    'Lazada & Shopee Picks',
+    'Before & After Transformations',
+    'Aesthetic Lighting',
+    'Storage Solutions',
+  ],
+
+  /* ── 5. PRODUCT CATEGORIES (filter pills) ──────────────── */
+  categories: ['All', 'Lighting', 'Storage', 'Decor', 'Furniture', 'Desk Setup'],
+
+  /* ── 6. FEATURED PRODUCTS (2-up row, top of Products) ──── */
+  featuredProducts: [
+    {
+      image:    'https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?w=360&q=80',
+      emoji:    '⚡',
+      category: 'Lighting',
+      name:     'RGB LED Strip Light — 5M with Remote',
+      desc:     'Transforms any room vibe instantly. Sticks on easily, no tools needed. One of my most recommended buys under ₱500.',
+      price:    '₱349',
+      shop:     'Shopee',
+      link:     '#',  // ← your Shopee affiliate link
+    },
+    {
+      image:    'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=360&q=80',
+      emoji:    '🖥',
+      category: 'Desk Setup',
+      name:     'Minimalist Floating Study Desk',
+      desc:     'Space-saving and clean. Perfect for small rooms. Holds up to 30kg and easy to assemble solo.',
+      price:    '₱1,250',
+      shop:     'Lazada',
+      link:     '#',  // ← your Lazada affiliate link
+    },
+  ],
+
+  /* ── 7. PRODUCT CAROUSEL ───────────────────────────────── */
+  products: [
+    {
+      badge:    'Top Pick',              // optional — remove line to hide badge
+      image:    'https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=520&q=80',
+      category: 'Lighting',
+      name:     'Bedside Touch Lamp — Warm White',
+      stars:    5,                       // 1–5
+      desc:     '3 brightness levels, USB charging port built in. Game changer for night reading.',
+      price:    '₱299',
+      priceFrom: true,                   // shows "from ₱299"
+      link:     '#',                     // ← your affiliate link
+    },
+    {
+      badge:    'Under ₱500',
+      image:    'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=520&q=80',
+      category: 'Storage',
+      name:     'Rattan Storage Basket Set (3pcs)',
+      stars:    4,
+      desc:     'Looks premium, costs almost nothing. Hides clutter while keeping things aesthetic.',
+      price:    '₱450',
+      priceFrom: true,
+      link:     '#',
+    },
+    {
+      image:    'https://images.unsplash.com/photo-1616046229478-9901c5536a45?w=520&q=80',
+      category: 'Decor',
+      name:     'Arch Full-Length Mirror — Nordic Style',
+      stars:    5,
+      desc:     'Makes small rooms feel bigger. The arch shape is very instagrammable and on-trend.',
+      price:    '₱899',
+      priceFrom: true,
+      link:     '#',
+    },
+    {
+      badge:    'New',
+      image:    'https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=520&q=80',
+      category: 'Desk Setup',
+      name:     'Wooden Desk Organizer with Drawer',
+      stars:    4,
+      desc:     'Solid wood feel at plastic prices. Phone slot, pen holder, small drawer — all in one.',
+      price:    '₱620',
+      priceFrom: true,
+      link:     '#',
+    },
+    {
+      image:    'https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=520&q=80',
+      category: 'Decor',
+      name:     'Linen Blackout Curtains — 2 Panels',
+      stars:    5,
+      desc:     'Blocks 90% of light, looks expensive, comes in 10 colors. Best upgrade for the money.',
+      price:    '₱780',
+      priceFrom: true,
+      link:     '#',
+    },
+    {
+      badge:    'Best Value',
+      image:    'https://images.unsplash.com/photo-1501127122-f385ca6ddd9d?w=520&q=80',
+      category: 'Storage',
+      name:     'Floating Wall Shelf — 3-Tier Set',
+      stars:    4,
+      desc:     'Simple, clean, holds plants + books. Very easy to install even solo.',
+      price:    '₱530',
+      priceFrom: true,
+      link:     '#',
+    },
+  ],
+
+  /* ── 8. BLOG POSTS ─────────────────────────────────────── */
+  // First post with featured:true becomes the big hero post.
+  // The rest fill the 3-column grid below it.
+  posts: [
+    {
+      featured:  true,                   // ← mark ONE post as featured
+      image:     'https://images.unsplash.com/photo-1615873968403-89e068629265?w=700&q=80',
+      category:  'Before & After',
+      date:      'June 2025',
+      title:     '₱5,000 Room Makeover: From Bare to Beautiful in One Weekend',
+      excerpt:   'I challenged myself to transform a boring bedroom using only ₱5,000 from Lazada and Shopee. Here\'s everything I bought, what worked, what didn\'t, and the final result.',
+      readTime:  '8 min read',
+      extraMeta: '12 affiliate links',   // optional — shows in featured post meta
+      link:      '#',                    // ← your blog post URL (Facebook post, IG, etc.)
+    },
+    {
+      image:    'https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=600&q=80',
+      category: 'Lighting',
+      date:     'May 2025',
+      title:    'The ₱300 LED Hack That Made My Room Look Like a Hotel',
+      excerpt:  'One strip light, one afternoon, and a complete vibe change. Here\'s the exact product and placement tips.',
+      readTime: '5 min read',
+      link:     '#',
+    },
+    {
+      image:    'https://images.unsplash.com/photo-1541123437800-1bb1317badc2?w=600&q=80',
+      category: 'Small Spaces',
+      date:     'May 2025',
+      title:    '10 Storage Hacks for Small Filipino Bedrooms (All Under ₱1,000)',
+      excerpt:  'When your room is tiny, every square inch counts. These are my go-to stylish and practical storage buys.',
+      readTime: '7 min read',
+      link:     '#',
+    },
+    {
+      image:    'https://images.unsplash.com/photo-1593085512500-5d55148d6f0d?w=600&q=80',
+      category: 'Desk Setup',
+      date:     'April 2025',
+      title:    'My ₱3,500 WFH Desk Setup — Every Item with Links',
+      excerpt:  'Built a clean, functional home office for under ₱3,500. Keyboard, monitor riser, organizer, lighting — all from local sellers.',
+      readTime: '9 min read',
+      link:     '#',
+    },
+  ],
+
+  /* ── 9. REELS ──────────────────────────────────────────── */
+  // platform: 'instagram' | 'tiktok'
+  // videoUrl: YouTube embed URL (https://www.youtube.com/embed/VIDEO_ID)
+  //           OR set to '' to make the card link directly to Instagram instead
+  reels: [
+    {
+      image:    'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400&q=80',
+      platform: 'instagram',
+      title:    'Before & After: ₱2K Room Glow Up',
+      views:    '42.1K',
+      videoUrl: '',   // ← paste YouTube embed URL or leave '' to link to IG
+      link:     '#',  // ← direct link to the reel (used when videoUrl is empty)
+    },
+    {
+      image:    'https://images.unsplash.com/photo-1616046229478-9901c5536a45?w=400&q=80',
+      platform: 'instagram',
+      title:    'The Mirror Trick That Opens Up Small Rooms',
+      views:    '28.6K',
+      videoUrl: '',
+      link:     '#',
+    },
+    {
+      image:    'https://images.unsplash.com/photo-1593085512500-5d55148d6f0d?w=400&q=80',
+      platform: 'tiktok',
+      title:    'POV: Unboxing My ₱500 Desk Setup Haul',
+      views:    '19.3K',
+      videoUrl: '',
+      link:     '#',
+    },
+    {
+      image:    'https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=400&q=80',
+      platform: 'tiktok',
+      title:    '3 Curtain Styles That Look Expensive (All Under ₱1K)',
+      views:    '55.8K',
+      videoUrl: '',
+      link:     '#',
+    },
+    {
+      image:    'https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=400&q=80',
+      platform: 'instagram',
+      title:    'How I Styled My Shelf Using Only Plants + Thrift Finds',
+      views:    '31.0K',
+      videoUrl: '',
+      link:     '#',
+    },
+  ],
+
+  /* ── 10. BEFORE & AFTER ────────────────────────────────── */
+  transformations: [
+    {
+      beforeImage: 'https://images.unsplash.com/photo-1531835551805-16d864c8d311?w=600&q=80',
+      afterImage:  'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80',
+      title:       'Bedroom — ₱3,200 Budget',
+      desc:        'LED strips, floating shelf, linen curtains, arch mirror',
+    },
+    {
+      beforeImage: 'https://images.unsplash.com/photo-1416339684178-3a239570f315?w=600&q=80',
+      afterImage:  'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&q=80',
+      title:       'Study Nook — ₱1,800 Budget',
+      desc:        'Floating desk, task lamp, desk organizer, wall shelf',
+    },
+    {
+      beforeImage: 'https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=600&q=80',
+      afterImage:  'https://images.unsplash.com/photo-1615873968403-89e068629265?w=600&q=80',
+      title:       'Living Room — ₱4,500 Budget',
+      desc:        'Sofa throw, rattan baskets, blackout curtains, floor lamp',
+    },
+  ],
+
+};
+
+/* ═══════════════════════════════════════════════════════════
+   🔧  EVERYTHING BELOW IS AUTOMATIC — no need to edit
+   ═══════════════════════════════════════════════════════════ */
+
+// ── ICONS ─────────────────────────────────────────────────
+const ICONS = {
+  arrow: `<svg class="icon-arr" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>`,
+  arrowSm: `<svg class="icon-arr-sm" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>`,
+  eye: `<svg style="width:12px;height:12px;fill:currentColor" viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>`,
+  play: `<svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:#fff;margin-left:3px"><path d="M8 5v14l11-7z"/></svg>`,
+  instagram: `<svg fill="white" viewBox="0 0 24 24" style="width:14px;height:14px"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>`,
+  tiktok: `<svg fill="white" viewBox="0 0 24 24" style="width:14px;height:14px"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.28 6.28 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34l-.02-9.14a8.28 8.28 0 004.84 1.54V4.26a4.85 4.85 0 01-1.05-.43z"/></svg>`,
+  igFull: `<svg fill="currentColor" viewBox="0 0 24 24" style="width:16px;height:16px"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>`,
+  ttFull: `<svg fill="currentColor" viewBox="0 0 24 24" style="width:16px;height:16px"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.28 6.28 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34l-.02-9.14a8.28 8.28 0 004.84 1.54V4.26a4.85 4.85 0 01-1.05-.43z"/></svg>`,
+  fbFull: `<svg fill="currentColor" viewBox="0 0 24 24" style="width:16px;height:16px"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>`,
+};
+
+// ── HELPERS ────────────────────────────────────────────────
+function stars(n) {
+  return Array.from({length:5}, (_,i) =>
+    `<span style="color:${i<n?'var(--gold)':'var(--border)'}"">★</span>`
+  ).join('');
+}
+function igHandle() {
+  return '@' + (SITE.instagram.split('/').filter(Boolean).pop() || 'makeitbetterph');
+}
+
+// ── SET SOCIAL LINKS ───────────────────────────────────────
+['navIG','mobileIG','reelIGLink','mobileBarIG'].forEach(id => {
+  const el = document.getElementById(id);
+  if (el) el.href = SITE.instagram;
+});
+const igStrip = document.getElementById('igStripBtn');
+if (igStrip) igStrip.href = SITE.instagram;
+const igHandle = document.getElementById('igStripHandle');
+if (igHandle) igHandle.textContent = 'Follow ' + igHandle + (igHandle ? '' : '@makeitbetterph');
+// fix: re-run properly
+document.getElementById('igStripHandle').textContent = 'Follow @' + (SITE.instagram.split('/').filter(Boolean).pop() || 'makeitbetterph');
+
+// ── FOOTER SOCIALS ─────────────────────────────────────────
+document.getElementById('footerSocials').innerHTML = `
+  <a href="${SITE.instagram}" target="_blank" rel="noopener noreferrer" class="footer-social">${ICONS.igFull}</a>
+  <a href="${SITE.tiktok}"    target="_blank" rel="noopener noreferrer" class="footer-social">${ICONS.ttFull}</a>
+  <a href="${SITE.facebook}"  target="_blank" rel="noopener noreferrer" class="footer-social">${ICONS.fbFull}</a>
+`;
+
+// ── FOOTER CATEGORIES ──────────────────────────────────────
+document.getElementById('footerCats').innerHTML = SITE.categories
+  .filter(c => c !== 'All')
+  .map(c => `<li><a href="#">${c}</a></li>`).join('');
+
+// ── TICKER ─────────────────────────────────────────────────
+const tItems = [...SITE.ticker, ...SITE.ticker]
+  .map(t => `<span class="ticker-item">${t}</span>`).join('');
+document.getElementById('tickerTrack').innerHTML = tItems;
+
+// ── HERO STATS ─────────────────────────────────────────────
+document.getElementById('heroStats').innerHTML = SITE.stats.map(s => `
+  <div>
+    <div class="hero-stat-num" data-count="${s.count}" data-suffix="${s.suffix}">0</div>
+    <div class="hero-stat-label">${s.label}</div>
+  </div>`).join('');
+
+// ── HERO CARD ──────────────────────────────────────────────
+const hc = SITE.heroCard;
+document.getElementById('heroCard').innerHTML = `
+  <div style="position:relative;display:inline-block">
+    <div class="hero-float-badge">Budget Pick ✦</div>
+    <div class="hero-card">
+      <img src="${hc.image}" alt="${hc.name}"/>
+      <div class="hero-card-body">
+        <div class="hero-card-tag">${hc.tag}</div>
+        <div class="hero-card-title">${hc.name}</div>
+        <div class="hero-card-meta">
+          <span class="hero-card-price">${hc.price}</span>
+          <a href="${hc.link}" class="hero-card-cta" rel="noopener noreferrer sponsored">See Deal →</a>
+        </div>
+      </div>
+    </div>
+  </div>`;
+
+// ── CATEGORY PILLS ─────────────────────────────────────────
+document.getElementById('catPills').innerHTML = SITE.categories.map((c,i) =>
+  `<button class="cat-pill${i===0?' active':''}" data-cat="${c.toLowerCase()}">${c}</button>`
+).join('');
+document.querySelectorAll('.cat-pill').forEach(pill => {
+  pill.addEventListener('click', () => {
+    document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
+    pill.classList.add('active');
+  });
+});
+
+// ── FEATURED PRODUCTS ──────────────────────────────────────
+document.getElementById('featuredGrid').innerHTML = SITE.featuredProducts.map(p => `
+  <a href="${p.link}" class="featured-card" rel="noopener noreferrer sponsored">
+    <img src="${p.image}" alt="${p.name}" class="featured-card-img"/>
+    <div class="featured-card-body">
+      <div class="featured-card-tag">${p.emoji} ${p.category}</div>
+      <h3 class="featured-card-name">${p.name}</h3>
+      <p class="featured-card-desc">${p.desc}</p>
+      <div class="featured-card-row">
+        <span class="featured-card-price">${p.price}</span>
+        <span class="featured-card-cta">Check on ${p.shop} ${ICONS.arrowSm}</span>
+      </div>
+    </div>
+  </a>`).join('');
+
+// ── PRODUCT CAROUSEL ───────────────────────────────────────
+document.getElementById('prodCarousel').innerHTML = SITE.products.map(p => `
+  <div class="prod-card">
+    <div class="prod-card-img-wrap">
+      ${p.badge ? `<span class="prod-card-badge">${p.badge}</span>` : ''}
+      <img src="${p.image}" alt="${p.name}" class="prod-card-img"/>
+    </div>
+    <div class="prod-card-body">
+      <div class="prod-card-cat">${p.category}</div>
+      <h3 class="prod-card-name">${p.name}</h3>
+      <div class="prod-card-stars">${stars(p.stars)}</div>
+      <p class="prod-card-desc">${p.desc}</p>
+      <div class="prod-card-footer">
+        <span class="prod-card-price">${p.priceFrom?'<small>from </small>':''}${p.price}</span>
+        <a href="${p.link}" class="prod-card-link" rel="noopener noreferrer sponsored">See Deal ${ICONS.arrowSm}</a>
+      </div>
+    </div>
+  </div>`).join('');
+
+// ── BLOG ───────────────────────────────────────────────────
+const featPost = SITE.posts.find(p => p.featured);
+const gridPosts = SITE.posts.filter(p => !p.featured);
+
+if (featPost) {
+  document.getElementById('blogFeatured').innerHTML = `
+    <a href="${featPost.link}" class="blog-featured">
+      <img src="${featPost.image}" alt="${featPost.title}" class="blog-featured-img"/>
+      <div class="blog-featured-body">
+        <span class="blog-featured-cat">${featPost.category}</span>
+        <h2 class="blog-featured-title">${featPost.title}</h2>
+        <p class="blog-featured-excerpt">${featPost.excerpt}</p>
+        <div class="blog-featured-meta">
+          <span>${featPost.date}</span><span>·</span>
+          <span>${featPost.readTime}</span>
+          ${featPost.extraMeta ? `<span>·</span><span>${featPost.extraMeta}</span>` : ''}
+        </div>
+        <span class="blog-featured-link">Read the full breakdown ${ICONS.arrow}</span>
+      </div>
+    </a>`;
+}
+
+document.getElementById('blogGrid').innerHTML = gridPosts.map((p, i) => `
+  <a href="${p.link}" class="blog-card reveal reveal-delay-${i+1}">
+    <div class="blog-card-img-wrap">
+      <img src="${p.image}" alt="${p.title}" class="blog-card-img"/>
+    </div>
+    <div class="blog-card-body">
+      <div class="blog-card-meta">
+        <span class="blog-card-cat">${p.category}</span>
+        <span class="blog-card-dot"></span>
+        <span class="blog-card-date">${p.date}</span>
+      </div>
+      <h3 class="blog-card-title">${p.title}</h3>
+      <p class="blog-card-excerpt">${p.excerpt}</p>
+      <div class="blog-card-footer">
+        <span class="blog-card-read">Read more ${ICONS.arrowSm}</span>
+        <span class="blog-card-time">${p.readTime}</span>
+      </div>
+    </div>
+  </a>`).join('');
+
+// ── REELS ──────────────────────────────────────────────────
+document.getElementById('reelsCarousel').innerHTML = SITE.reels.map(r => `
+  <div class="reel-card" data-video="${r.videoUrl||''}" data-link="${r.link||''}">
+    <img src="${r.image}" alt="${r.title}"/>
+    <div class="reel-overlay"></div>
+    <div class="reel-play">${ICONS.play}</div>
+    <div class="reel-platform">${r.platform==='tiktok' ? ICONS.tiktok : ICONS.instagram}</div>
+    <div class="reel-info">
+      <div class="reel-title">${r.title}</div>
+      <div class="reel-views">${ICONS.eye} ${r.views} views</div>
+    </div>
+  </div>`).join('');
+
+// ── BEFORE/AFTER ───────────────────────────────────────────
+document.getElementById('baGrid').innerHTML = SITE.transformations.map((t, i) => `
+  <div class="ba-card reveal reveal-delay-${i+1}">
+    <div class="ba-images">
+      <img src="${t.beforeImage}" alt="Before" class="ba-img" data-state="before"/>
+      <img src="${t.afterImage}"  alt="After"  class="ba-img hidden" data-state="after"/>
+      <div class="ba-label" id="baLabel${i}">Before</div>
+    </div>
+    <div class="ba-toggle-row">
+      <button class="ba-btn active" data-card="${i}" data-show="before">Before</button>
+      <button class="ba-btn"        data-card="${i}" data-show="after">After</button>
+    </div>
+    <div class="ba-caption">
+      <h4>${t.title}</h4>
+      <p>${t.desc}</p>
+    </div>
+  </div>`).join('');
+
+// ── BEFORE/AFTER LOGIC ─────────────────────────────────────
+document.addEventListener('click', e => {
+  const btn = e.target.closest('.ba-btn');
+  if (!btn) return;
+  const card = btn.dataset.card;
+  const show = btn.dataset.show;
+  const wrap = btn.closest('.ba-card');
+  wrap.querySelectorAll('.ba-img').forEach(img => img.classList.toggle('hidden', img.dataset.state !== show));
+  wrap.querySelectorAll('.ba-btn').forEach(b => b.classList.toggle('active', b.dataset.show === show));
+  const label = document.getElementById('baLabel' + card);
+  if (label) label.textContent = show.charAt(0).toUpperCase() + show.slice(1);
+});
+
+// ── SCROLL REVEAL ──────────────────────────────────────────
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -48px 0px' });
+// run after render
+setTimeout(() => document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el)), 0);
+
+// ── NAVBAR ─────────────────────────────────────────────────
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40), { passive: true });
+
+// ── MOBILE MENU ────────────────────────────────────────────
+const burger = document.getElementById('burger');
+const mobileMenu = document.getElementById('mobileMenu');
+burger.addEventListener('click', () => mobileMenu.classList.add('open'));
+document.getElementById('mobileClose').addEventListener('click', () => mobileMenu.classList.remove('open'));
+document.querySelectorAll('.mobile-link').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('open')));
+
+// ── ANIMATED COUNTERS ──────────────────────────────────────
+const cntObs = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    const el = entry.target;
+    const val = parseInt(el.dataset.count);
+    const suffix = el.dataset.suffix || '';
+    const start = performance.now();
+    (function tick(now) {
+      const p = Math.min((now - start) / 1800, 1);
+      el.textContent = Math.round(val * (1 - Math.pow(1-p, 3))).toLocaleString('en-PH') + suffix;
+      if (p < 1) requestAnimationFrame(tick);
+    })(performance.now());
+    cntObs.unobserve(el);
+  });
+}, { threshold: 0.5 });
+setTimeout(() => document.querySelectorAll('[data-count]').forEach(el => cntObs.observe(el)), 0);
+
+// ── CAROUSELS ──────────────────────────────────────────────
+function setupCarousel(carouselId, prevId, nextId) {
+  const c = document.getElementById(carouselId);
+  const step = () => (c.querySelector('.prod-card, .reel-card') || { offsetWidth: 260 }).offsetWidth + 20;
+  document.getElementById(prevId).addEventListener('click', () => c.scrollBy({ left: -step(), behavior: 'smooth' }));
+  document.getElementById(nextId).addEventListener('click', () => c.scrollBy({ left:  step(), behavior: 'smooth' }));
+}
+setupCarousel('prodCarousel',   'prodPrev',  'prodNext');
+setupCarousel('reelsCarousel',  'reelPrev',  'reelNext');
+
+// ── REEL MODAL ─────────────────────────────────────────────
+const reelModal  = document.getElementById('reelModal');
+const reelIframe = document.getElementById('reelIframe');
+document.addEventListener('click', e => {
+  const card = e.target.closest('.reel-card');
+  if (!card) return;
+  const videoUrl = card.dataset.video;
+  if (videoUrl) {
+    reelIframe.src = videoUrl + '?autoplay=1';
+    reelModal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  } else if (card.dataset.link && card.dataset.link !== '#') {
+    window.open(card.dataset.link, '_blank', 'noopener,noreferrer');
+  }
+});
+function closeReelModal() { reelModal.classList.remove('open'); reelIframe.src=''; document.body.style.overflow=''; }
+document.getElementById('reelClose').addEventListener('click', closeReelModal);
+reelModal.addEventListener('click', e => { if (e.target === reelModal) closeReelModal(); });
+
+// ── NEWSLETTER MODAL ───────────────────────────────────────
+const modalBg = document.getElementById('modalBg');
+function closeNewsletterModal() { modalBg.classList.remove('open'); document.body.style.overflow=''; sessionStorage.setItem('mibph_modal','1'); }
+document.getElementById('modalClose').addEventListener('click', closeNewsletterModal);
+document.getElementById('modalSkip').addEventListener('click', closeNewsletterModal);
+modalBg.addEventListener('click', e => { if (e.target === modalBg) closeNewsletterModal(); });
+if (!sessionStorage.getItem('mibph_modal')) setTimeout(() => modalBg.classList.add('open'), 32000);
+
+// ── ESCAPE KEY ─────────────────────────────────────────────
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closeReelModal(); closeNewsletterModal(); }
+});
+
+// ── FORMS ──────────────────────────────────────────────────
+function handleNL(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('button');
+  btn.textContent = "✓ You're subscribed!";
+  btn.style.background = '#2A6049';
+  btn.disabled = true;
+}
+function handleModal(e) { e.preventDefault(); closeNewsletterModal(); }
+</script>
 </body>
 </html>
